@@ -1,6 +1,6 @@
-class AppConfig{
-
-  static String domainName = 'https://infixapp6.uxseven.com'; //TODO:: Replace with your domain name
+class AppConfig {
+  static String domainName =
+      'https://sgstar.asia'; //TODO:: Replace with your domain name
 
   static String appLogo = 'assets/config/app_logo.png';
 
@@ -11,5 +11,4 @@ class AppConfig{
   static String loginBackground = 'assets/config/login_bg.png';
 
   static String appToolbarBackground = 'assets/config/app_toolbar_bg.png';
-
 }
