@@ -1,4 +1,4 @@
-name: SGSIS
+name: infixedu
 description: A new Flutter project.
 
 publish_to: 'none'
@@ -82,9 +82,10 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
   assets:
-   - assets/config/
    - assets/images/
    - assets/locale/
+   - assets/images/icons/
+   - assets/config/
 
 fonts:
   - family: popins

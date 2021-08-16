@@ -29,6 +29,7 @@ class Login {
     String isAdministrator;
     String zoom;
     String token;
+    String full_name;
 
     Response response = await get(Uri.parse(InfixApi.login(email, password)));
     if (response.statusCode == 200) {
@@ -37,6 +38,7 @@ class Login {
       isSuccessed = user['success'];
       id = user['data']['user']['id'];
       rule = user['data']['user']['role_id'];
+      full_name = user['data']['user']['full_name'];
       schoolId = user['data']['user']['school_id'];
       isAdministrator = user['data']['user']['is_administrator'];
       token = user['data']['accessToken'];
@@ -77,6 +79,7 @@ class Login {
         saveStringValue('schoolId', '$schoolId');
         saveStringValue('image', '$image');
         saveStringValue('isAdministrator', '$isAdministrator');
+        saveStringValue('full_name', '$full_name');
         saveStringValue('lang', 'en');
         saveStringValue('token', token.toString());
         AppFunction.getFunctions(context, rule.toString(), zoom.toString());
@@ -94,6 +97,7 @@ class Login {
     String isAdministrator;
     String zoom;
     String token;
+    String full_name;
     var message;
 //    InfixApi api = InfixApi();
 
@@ -113,6 +117,7 @@ class Login {
         message = user['message'];
         id = user['data']['user']['id'];
         rule = user['data']['user']['role_id'];
+        full_name = user['data']['user']['full_name'];
         schoolId = user['data']['user']['school_id'];
         isAdministrator = user['data']['user']['is_administrator'];
         token = user['data']['accessToken'];
@@ -120,13 +125,12 @@ class Login {
         // print("ZOOM: ${user['data']['system_settings']}");
         zoom = user['data']['system_settings'] == null
             ? '1'
-            : user['data']['system_settings'][0]
-        ['Zoom'].toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
+            : user['data']['system_settings'][0]['Zoom']
+                .toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
 
         print("STUDENT PHOTO: ${user['data']['userDetails']}");
 
-        if (rule == 1 ||
-            rule == 4 ) {
+        if (rule == 1 || rule == 4) {
           image = isNullOrEmpty(user['data']['userDetails']['staff_photo'])
               ? 'public/uploads/staff/demo/staff.jpg'
               : user['data']['userDetails']['staff_photo'].toString();
@@ -134,7 +138,7 @@ class Login {
           image = isNullOrEmpty(user['data']['userDetails']['student_photo'])
               ? 'public/uploads/staff/demo/staff.jpg'
               : user['data']['userDetails']['student_photo'].toString();
-        } else if (rule == 3 ) {
+        } else if (rule == 3) {
           image = isNullOrEmpty(user['data']['userDetails']['guardian_photo'])
               ? 'public/uploads/staff/demo/staff.jpg'
               : user['data']['userDetails']['guardian_photo'].toString();
@@ -145,6 +149,7 @@ class Login {
           saveStringValue('password', password);
           saveStringValue('id', '$id');
           saveStringValue('rule', '$rule');
+          saveStringValue('full_name', '$full_name');
           saveStringValue('schoolId', '$schoolId');
           saveStringValue('image', '$image');
           saveStringValue('isAdministrator', '$isAdministrator');

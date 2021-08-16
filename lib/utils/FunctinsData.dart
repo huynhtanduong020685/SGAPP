@@ -41,6 +41,7 @@ import 'package:infixedu/screens/student/leave/LeaveStudentHome.dart';
 import 'package:infixedu/screens/student/library/BookIssuedScreen.dart';
 import 'package:infixedu/screens/student/library/BookListScreen.dart';
 import 'package:infixedu/screens/student/library/LibraryScreen.dart';
+import 'package:infixedu/screens/student/new/HomeStudent.dart';
 import 'package:infixedu/screens/student/notice/NoticeScreen.dart';
 import 'package:infixedu/screens/student/onlineExam/ActiveOnlineExamScreen.dart';
 import 'package:infixedu/screens/student/onlineExam/OnlineExamResultScreen.dart';
@@ -424,47 +425,49 @@ class AppFunction {
     'assets/images/addhw.png',
   ];
 
-  static void getFunctions(BuildContext context, String rule,String zoom) {
+  static void getFunctions(BuildContext context, String rule, String zoom) {
     Route route;
 
     switch (rule) {
       case '1':
-        if(zoom == '1'){
+        if (zoom == '1') {
           route =
               MaterialPageRoute(builder: (context) => Home(admins, adminIcons));
           Navigator.pushReplacement(context, route);
-        }else{
-          route =
-              MaterialPageRoute(builder: (context) => Home(admins2, adminIcons2));
+        } else {
+          route = MaterialPageRoute(
+              builder: (context) => Home(admins2, adminIcons2));
           Navigator.pushReplacement(context, route);
         }
         break;
       case '2':
-        if(zoom == '1'){
+        if (zoom == '1') {
           route = MaterialPageRoute(
-              builder: (context) => Home(students, studentIcons));
+              builder: (context) => StudentHome(students, studentIcons));
           Navigator.pushReplacement(context, route);
-        }else{
-          route = MaterialPageRoute(builder: (context) => Home(students2, studentIcons2));
+        } else {
+          route = MaterialPageRoute(
+              builder: (context) => StudentHome(students2, studentIcons2));
           Navigator.pushReplacement(context, route);
         }
         break;
       case '3':
-        if(zoom == '1'){
+        if (zoom == '1') {
           route = MaterialPageRoute(
               builder: (context) => Home(parent, parentIcons));
           Navigator.pushReplacement(context, route);
-        }else{
-          route = MaterialPageRoute(builder: (context) => Home(parent2, parentIcons2));
+        } else {
+          route = MaterialPageRoute(
+              builder: (context) => Home(parent2, parentIcons2));
           Navigator.pushReplacement(context, route);
         }
         break;
       case '4':
-        if(zoom == '1'){
+        if (zoom == '1') {
           route = MaterialPageRoute(
               builder: (context) => Home(teachers, teachersIcons));
           Navigator.pushReplacement(context, route);
-        }else {
+        } else {
           route = MaterialPageRoute(
               builder: (context) => Home(teachers2, teachersIcons2));
           Navigator.pushReplacement(context, route);
@@ -474,7 +477,7 @@ class AppFunction {
   }
 
   static void getDashboardPage(BuildContext context, String title,
-      {var id, String image,int zoom,String token}) {
+      {var id, String image, int zoom, String token}) {
     switch (title) {
       case 'Profile':
         Navigator.push(
@@ -527,7 +530,7 @@ class AppFunction {
             ScaleRoute(
                 page: StudentTeacher(
               id: id,
-                  token:token,
+              token: token,
             )));
         break;
       case 'Library':
@@ -575,8 +578,8 @@ class AppFunction {
             )));
         break;
       case 'Attendance':
-        Navigator.push(
-            context, ScaleRoute(page: StudentAttendanceScreen(id: id,token:token)));
+        Navigator.push(context,
+            ScaleRoute(page: StudentAttendanceScreen(id: id, token: token)));
         break;
       case 'Settings':
         Navigator.push(context, ScaleRoute(page: SettingScreen()));
@@ -642,7 +645,8 @@ class AppFunction {
     }
   }
 
-  static void getSaasAdminDashboardPage(BuildContext context, String title,String uid) {
+  static void getSaasAdminDashboardPage(
+      BuildContext context, String title, String uid) {
     switch (title) {
       case 'Students':
         Navigator.push(context, ScaleRoute(page: StudentSearch()));
@@ -693,8 +697,8 @@ class AppFunction {
             context,
             ScaleRoute(
                 page: VirtualMeetingScreen(
-                  uid: uid,
-                )));
+              uid: uid,
+            )));
         break;
     }
   }
@@ -1060,13 +1064,13 @@ class AppFunction {
     int min = int.parse(part2);
 
     if (hr <= 12) {
-      if(hr ==10 || hr == 11 || hr == 12){
-        return "$hr:$min"+"am";
+      if (hr == 10 || hr == 11 || hr == 12) {
+        return "$hr:$min" + "am";
       }
-      return "0$hr:$min"+"am";
+      return "0$hr:$min" + "am";
     } else {
-      hr = hr-12;
-      return "0$hr:$min"+"pm";
+      hr = hr - 12;
+      return "0$hr:$min" + "pm";
     }
   }
 

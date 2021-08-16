@@ -1,20 +1,13 @@
-// Dart imports:
 import 'dart:async';
-
-// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:infixedu/config/app_config.dart';
-
-// Package imports:
-import 'package:shared_preferences/shared_preferences.dart';
-
-// Project imports:
 import 'package:infixedu/localization/app_translations.dart';
 import 'package:infixedu/localization/app_translations_delegate.dart';
 import 'package:infixedu/localization/application.dart';
-import 'package:infixedu/screens/Login.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 import 'package:infixedu/utils/Utils.dart';
+import 'package:infixedu/utils/apis/Apis.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import './Login.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -31,20 +24,21 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
-    application.onLocaleChanged = onLocaleChange;
+    // application.onLocaleChanged = onLocaleChange;
 
     //getting language code from memory and using this code we fetch translated data from asset/locale
-    Utils.getStringValue('lang').then((value) {
-      if (value != null) {
-        _newLocaleDelegate = AppTranslationsDelegate(newLocale: Locale(value));
-        _newLocaleDelegate.load(Locale(value)).then((val) {
-          if (!mounted) return;
-          setState(() {
-            appTranslations = val;
-          });
-        });
-      }
-    });
+    //disable this function since we only use English
+    // Utils.getStringValue('lang').then((value) {
+    //   if (value != null) {
+    //     _newLocaleDelegate = AppTranslationsDelegate(newLocale: Locale(value));
+    //     _newLocaleDelegate.load(Locale(value)).then((val) {
+    //       if (!mounted) return;
+    //       setState(() {
+    //         appTranslations = val;
+    //       });
+    //     });
+    //   }
+    // });
 
     Route route;
     controller =
@@ -52,20 +46,18 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     animation = Tween(begin: 30.0, end: 90.0).animate(controller);
     controller.forward();
 
-    Future.delayed(Duration(seconds: 3), () {
-      getBooleanValue('isLogged').then((value) {
-        if (value) {
-          Utils.getStringValue('rule').then((rule) {
-            Utils.getStringValue('zoom').then((zoom) {
-              AppFunction.getFunctions(context, rule, zoom);
-            });
-          });
-        } else {
-          route = MaterialPageRoute(builder: (context) => LoginScreen());
-          Navigator.pushReplacement(context, route);
-        }
-      });
-    });
+    // Future.delayed(Duration(seconds: 1), () {
+    //   getBooleanValue('isLogged').then((value) {
+    //     if (value) {
+    //       Utils.getStringValue('rule').then((rule) {
+    //         AppFunction.getFunctions(context, rule);
+    //       });
+    //     } else {
+    //       route = MaterialPageRoute(builder: (context) => LoginScreen());
+    //       Navigator.pushReplacement(context, route);
+    //     }
+    //   });
+    // });
   }
 
   @override
@@ -78,94 +70,90 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        body: Stack(
+        body: ListView(
           children: <Widget>[
-            Positioned.fill(
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(AppConfig.splashScreenBackground),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
             Container(
-              alignment: Alignment.topCenter,
-              height: 10.0,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(AppConfig.splashTopLine),
-                  fit: BoxFit.fitWidth,
+                  image: AssetImage('assets/images/splash_bg.png'),
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                height: MediaQuery.of(context).size.height / 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Text(
-                        appTranslations != null
-                            ? appTranslations.text('Welcome to')
-                            : 'Welcome to',
-                        style: TextStyle(
-                          color: Color(0xFF727FC8),
-                          fontSize: 20.0,
-                          fontFamily: 'popins',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    AnimatedBuilder(
-                      animation: animation,
-                      builder: (context, child) {
-                        return Container(
-                          height: animation.value,
-                          width: animation.value,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: ExactAssetImage(
-                                  AppConfig.appLogo),
+              child: Column(
+                children: <Widget>[
+                  // Container(
+                  //   alignment: Alignment.topCenter,
+                  //   height: 10.0,
+                  //   decoration: BoxDecoration(
+                  //     image: DecorationImage(
+                  //       image: AssetImage('assets/images/line.png'),
+                  //       fit: BoxFit.fitWidth,
+                  //     ),
+                  //   ),
+                  // ),
+                  Container(
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: 20.0, top: 30.0),
+                          child: Text(
+                            appTranslations != null
+                                ? appTranslations.text('Welcome to')
+                                : 'Welcome to',
+                            style: TextStyle(
+                              color: Color(0xFF191970),
+                              fontSize: 40.0,
+                              fontFamily: 'popins',
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                        );
-                      },
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: 80.0, top: 10.0),
+                          child: Text(
+                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color(0xFF727FC8),
+                                fontSize: 20.0,
+                                fontFamily: 'popins',
+                                fontStyle: FontStyle.normal),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 0.0),
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(22.0),
+                            ),
+                            color: Color(0xFF58b6ed), // background
+                            textColor: Colors.white, // foreground
+                            onPressed: () {
+                              getBooleanValue('isLogged');
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              child: Text(
+                                "LET'S GO",
+                                style: TextStyle(
+                                  color: Color(0xFFffffff),
+                                  fontSize: 22.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 60.0),
-                      child: Text(
-                        appTranslations != null
-                            ? appTranslations.text('UNLIMITED EDUCATION ERP')
-                            : 'UNLIMITED EDUCATION ERP',
-                        style: TextStyle(
-                            color: Color(0xFF727FC8),
-                            fontSize: 10.0,
-                            fontFamily: 'popins',
-                            fontStyle: FontStyle.normal),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(bottom: 80.0, left: 40, right: 40),
-                child: Container(
-                  alignment: Alignment.bottomCenter,
-                  child: LinearProgressIndicator(
-                    backgroundColor: Colors.transparent,
                   ),
-                ),
+                ],
               ),
             ),
           ],
@@ -176,10 +164,20 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
 
   Future<bool> getBooleanValue(String key) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(key) ?? false;
-  }
 
-  void onLocaleChange(Locale locale) {
-    _newLocaleDelegate = AppTranslationsDelegate(newLocale: locale);
+    var status = prefs.getBool(key) ?? false;
+    if (status) {
+      Utils.getStringValue('rule').then((rule) {
+        Utils.getStringValue('zoom').then((zoom) {
+          AppFunction.getFunctions(context, rule, zoom);
+        });
+      });
+    } else {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+        (Route<dynamic> route) => false,
+      );
+    }
   }
 }
