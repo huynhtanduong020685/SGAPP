@@ -86,7 +86,9 @@ flutter:
    - assets/locale/
    - assets/images/icons/
    - assets/config/
-
+   - assets/images/17. DAILY ACTIVITIES.png
+   - assets/images/HOMEWORK.png
+   - assets/images/logo_icon/
 fonts:
   - family: popins
     fonts:
