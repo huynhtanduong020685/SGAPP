@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:sgstart_login/main.dart';
 
-class LoginWidget extends StatelessWidget {
-  const LoginWidget({
-    Key? key,
-  }) : super(key: key);
+class RegisterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -76,10 +72,7 @@ class LoginWidget extends StatelessWidget {
           Column(
             children: [
               ElevatedButton(onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BottomNavigator()),
-                );
+
               }, child: Text('SIGN UP'),
                 style: ElevatedButton.styleFrom(
                     primary: Color(0xFF9EDEFF),
