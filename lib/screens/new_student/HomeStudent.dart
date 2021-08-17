@@ -6,6 +6,7 @@ import 'package:infixedu/screens/new_student/ELearningScreen/ElearningScreen.dar
 import 'package:infixedu/screens/new_student/HomeScreen/HomeScreen.dart';
 import 'package:infixedu/screens/new_student/SettingScreen/SettingsScreen.dart';
 import 'package:infixedu/screens/new_student/studentScreen/StudentScreen.dart';
+import 'package:infixedu/screens/new_student/absent.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,6 +39,7 @@ class _StudentHomeState extends State<StudentHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: appBar(),
         body: body(_selectedIndex),
         floatingActionButton:
@@ -213,7 +215,7 @@ class _StudentHomeState extends State<StudentHome> {
         return HomeScreen();
         break;
       case 1:
-        return StudentScreen();
+        return AbsentScreen();
         break;
       case 2:
         return ChatScreen();
