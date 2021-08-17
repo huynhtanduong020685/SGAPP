@@ -38,6 +38,7 @@ class _StudentHomeState extends State<StudentHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false ,
         appBar: appBar(),
         body: body(_selectedIndex),
         floatingActionButton:

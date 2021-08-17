@@ -12,7 +12,7 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text('This is student screen', style: TextStyle(fontSize: 50)),
+        child: Text('This is setting screen', style: TextStyle(fontSize: 50)),
       ),
     );
   }

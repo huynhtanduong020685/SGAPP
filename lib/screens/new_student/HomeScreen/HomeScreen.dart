@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/Curriculum.dart';
+import 'package:infixedu/screens/new_student/HomeScreen/Widgets/news.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({key}) : super(key: key);
@@ -84,11 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return Curriculum();
         break;
       case 0:
-        return Center(
-            child: Text(
-          'Main page',
-          style: TextStyle(fontSize: 45),
-        ));
+        return News();
         break;
       case 2:
         return Center(
