@@ -41,7 +41,7 @@ import 'package:infixedu/screens/student/leave/LeaveStudentHome.dart';
 import 'package:infixedu/screens/student/library/BookIssuedScreen.dart';
 import 'package:infixedu/screens/student/library/BookListScreen.dart';
 import 'package:infixedu/screens/student/library/LibraryScreen.dart';
-import 'package:infixedu/screens/student/new/HomeStudent.dart';
+import 'package:infixedu/screens/new_student/HomeStudent.dart';
 import 'package:infixedu/screens/student/notice/NoticeScreen.dart';
 import 'package:infixedu/screens/student/onlineExam/ActiveOnlineExamScreen.dart';
 import 'package:infixedu/screens/student/onlineExam/OnlineExamResultScreen.dart';

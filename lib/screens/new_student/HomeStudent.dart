@@ -1,5 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/BusScreen/BusScreen.dart';
+import 'package:infixedu/screens/new_student/ChatScreen/ChatScreen.dart';
+import 'package:infixedu/screens/new_student/ELearningScreen/ElearningScreen.dart';
+import 'package:infixedu/screens/new_student/HomeScreen/HomeScreen.dart';
+import 'package:infixedu/screens/new_student/SettingScreen/SettingsScreen.dart';
+import 'package:infixedu/screens/new_student/studentScreen/StudentScreen.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +24,6 @@ class _StudentHomeState extends State<StudentHome> {
   String name;
   String rule;
   int _selectedIndex = 0;
-  int _selectedTopBarIndex = 0;
 
   @override
   void initState() {
@@ -34,71 +39,7 @@ class _StudentHomeState extends State<StudentHome> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(),
-        body: Column(
-          children: <Widget>[
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 3,
-                        offset: Offset(0, 1), // changes position of shadow
-                      ),
-                    ]),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: BottomNavigationBar(
-                    selectedItemColor: Color(0xff191970),
-                    unselectedItemColor: Colors.blue,
-                    type: BottomNavigationBarType.fixed,
-                    showSelectedLabels: false,
-                    showUnselectedLabels: false,
-                    items: const <BottomNavigationBarItem>[
-                      BottomNavigationBarItem(
-                        icon: ImageIcon(
-                          AssetImage('assets/images/icons/new.png'),
-                          size: 40,
-                        ),
-                        label: '',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: ImageIcon(
-                          AssetImage('assets/images/icons/curriculum.png'),
-                          size: 40,
-                        ),
-                        label: '',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: ImageIcon(
-                          AssetImage('assets/images/icons/school-life.png'),
-                          size: 40,
-                        ),
-                        label: '',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: ImageIcon(
-                          AssetImage('assets/images/icons/chat.png'),
-                          size: 40,
-                        ),
-                        label: '',
-                      ),
-                    ],
-                    currentIndex: _selectedTopBarIndex,
-                    onTap: _onTopNavbarTapped,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              child: Expanded(child: checkviewpage(_selectedTopBarIndex)),
-            )
-          ],
-        ),
+        body: body(_selectedIndex),
         floatingActionButton:
             Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
           FloatingActionButton(
@@ -135,12 +76,6 @@ class _StudentHomeState extends State<StudentHome> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-    });
-  }
-
-  void _onTopNavbarTapped(int index) {
-    setState(() {
-      _selectedTopBarIndex = index;
     });
   }
 
@@ -216,88 +151,6 @@ class _StudentHomeState extends State<StudentHome> {
     );
   }
 
-  Widget checkviewpage(selectedTopBarIndex) {
-    switch (selectedTopBarIndex) {
-      case 1:
-        return GridView.count(
-          primary: false,
-          padding: const EdgeInsets.all(60),
-          crossAxisSpacing: 60,
-          mainAxisSpacing: 20,
-          crossAxisCount: 2,
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: const Text("He'd have you all unravel at the"),
-              color: Colors.teal[100],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: const Text('Heed not the rabble'),
-              color: Colors.teal[200],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: const Text('Sound of screams but the'),
-              color: Colors.teal[300],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: const Text('Who scream'),
-              color: Colors.teal[400],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: const Text('Revolution is coming...'),
-              color: Colors.teal[500],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: const Text('Revolution, they...'),
-              color: Colors.teal[600],
-            ),
-          ],
-        );
-        break;
-      case 0:
-        return Center(
-            child: Text(
-          'Main page',
-          style: TextStyle(fontSize: 45),
-        ));
-        break;
-      case 2:
-        return Center(
-            child: Text(
-          'School life',
-          style: TextStyle(fontSize: 45),
-        ));
-        break;
-      default:
-        return Center(
-            child: Text(
-          'Loading',
-          style: TextStyle(fontSize: 45),
-        ));
-        break;
-    }
-  }
-
-  Future<void> clear() async {
-    // print(widget._images);
-    final pref = await SharedPreferences.getInstance();
-    await pref.clear();
-  }
-
-  String getName() {
-    Utils.getStringValue('full_name').then((value) {
-      setState(() {
-        name = value;
-      });
-    });
-    return name;
-  }
-
   Widget appBar() {
     return PreferredSize(
         preferredSize: Size.fromHeight(100.0),
@@ -337,5 +190,48 @@ class _StudentHomeState extends State<StudentHome> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
         ));
+  }
+
+  Future<void> clear() async {
+    // print(widget._images);
+    final pref = await SharedPreferences.getInstance();
+    await pref.clear();
+  }
+
+  String getName() {
+    Utils.getStringValue('full_name').then((value) {
+      setState(() {
+        name = value;
+      });
+    });
+    return name;
+  }
+
+  body(_selectedIndex) {
+    switch (_selectedIndex) {
+      case 0:
+        return HomeScreen();
+        break;
+      case 1:
+        return StudentScreen();
+        break;
+      case 2:
+        return ChatScreen();
+        break;
+      case 3:
+        return BusScreen();
+        break;
+      case 4:
+        return ELearningScreen();
+        break;
+      case 5:
+        return SettingScreen();
+        break;
+      default:
+        return Center(
+          child: Text('Loading'),
+        );
+        break;
+    }
   }
 }
