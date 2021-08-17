@@ -1,6 +1,7 @@
 // Dart imports:
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ui';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/config/app_config.dart';
+import 'package:infixedu/screens/regsiter.dart';
 
 // Project imports:
 import 'package:infixedu/utils/Utils.dart';
@@ -239,6 +241,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               )),
                         ),
                       ),
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => RegisterWidget()),
+                            );
+                          },
+                          child: Text('New User ',style: TextStyle(color: Colors.grey),textAlign: TextAlign.end,)),
                     ],
                   ),
                 ),
