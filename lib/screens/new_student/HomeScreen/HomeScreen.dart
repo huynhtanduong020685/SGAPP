@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/Curriculum.dart';
+import 'package:infixedu/screens/new_student/HomeScreen/Widgets/schoolLife.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({key}) : super(key: key);
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+          padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0,bottom: 10.0),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
@@ -91,11 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
         break;
       case 2:
-        return Center(
-            child: Text(
-          'School life',
-          style: TextStyle(fontSize: 45),
-        ));
+        return SchoolLife();
         break;
       default:
         return Center(
