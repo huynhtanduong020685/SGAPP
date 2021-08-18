@@ -12,7 +12,8 @@ class RegisterWidget extends StatelessWidget {
         padding: EdgeInsets.all(32),
         children: [
           // if (!isKeyBoard)
-          Image.asset('assets/bottom-logo.png'),
+          Image.asset('assets/images/logo_icon/launcher.png',width: 200, height: 200,),
+          SizedBox(height: 30,),
           Container(
             height: 40.0,
             width: 250.0,
