@@ -25,7 +25,7 @@ class _StudentHomeState extends State<StudentHome> {
   String name;
   String rule;
   int _selectedIndex = 0;
-
+  var _pageController= PageController();
   @override
   void initState() {
     super.initState();
@@ -36,12 +36,25 @@ class _StudentHomeState extends State<StudentHome> {
     });
   }
 
+  var _pages=[
+    HomeScreen(),StudentScreen(),ChatScreen(),BusScreen(),ELearningScreen(),SettingScreen()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: appBar(),
-        body: body(_selectedIndex),
+        body: PageView(
+          children: _pages,
+          onPageChanged: (index){
+            setState(() {
+              _selectedIndex=index;
+            });
+          },
+          controller: _pageController,
+        ),
+        // body: Center(child: _pages[_selectedIndex],),
         floatingActionButton:
         Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
           FloatingActionButton(
@@ -75,11 +88,7 @@ class _StudentHomeState extends State<StudentHome> {
         bottomNavigationBar: bottomNavBar());
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+
 
   Widget bottomNavBar() {
     return Container(
@@ -151,8 +160,15 @@ class _StudentHomeState extends State<StudentHome> {
         ),
       ),
     );
-  }
 
+  }
+  void _onItemTapped(index) {
+    setState(() {
+      _selectedIndex = index;
+      _pageController.animateToPage(_selectedIndex,
+          duration: Duration(microseconds: 200), curve: Curves.linear);
+    });
+  }
   Widget appBar() {
     return PreferredSize(
         preferredSize: Size.fromHeight(100.0),
