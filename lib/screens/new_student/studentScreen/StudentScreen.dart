@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/studentScreen/Absent.dart';
 import 'package:infixedu/screens/new_student/studentScreen/CalendarAndEvent.dart';
+import 'package:infixedu/screens/new_student/studentScreen/ClinicScreen.dart';
 import 'package:infixedu/screens/new_student/studentScreen/GradeBook.dart';
 import 'package:infixedu/screens/new_student/studentScreen/StudentInfoPage.dart';
 
@@ -243,9 +244,14 @@ class _StudentScreenState extends State<StudentScreen> {
                             color: const Color(0xFF7dd3f7),
                           ),
                         ),
+                        child: InkWell(
+                          onTap: () {
+                            _navigate(7);
+                          },
                         child: Image(
                             image:
                                 AssetImage('assets/images/icons/clinic.png')),
+                        )
                       ),
                       Flexible(
                           child: Padding(
@@ -400,6 +406,12 @@ class _StudentScreenState extends State<StudentScreen> {
         break;
       case 4:
         Navigator.push(context, BouncyAnimation(widget: AbsentScreen()));
+        break;
+      case 7:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ClinicPage()),
+        );
         break;
       default:
         break;

@@ -60,60 +60,61 @@ class _MyAppState extends State<MyApp> {
     return isRTL != null
         ? isRTL
             ? ScreenUtilInit(
-        designSize: Size(360, 690),
-        builder: () => MaterialApp(
-                title: "infixEdu",
-                debugShowCheckedModeBanner: false,
-                theme: basicTheme(),
-                home: Stack(
-                  children: [
-                    FutureBuilder(
-                        future: _initialization,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Scaffold(
-                              body: Center(
-                                child: Text(
-                                  snapshot.error.toString(),
-                                ),
-                              ),
-                            );
-                          }
-                          if (snapshot.connectionState == ConnectionState.done) {
-                            return Scaffold(
-                              body: Splash(),
-                            );
-                          }
-                          return CircularProgressIndicator();
-                        }),
-
-                  ],
-                ),
-                localizationsDelegates: [
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: [
-                  Locale(
-                      "fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
-                ],
-              ))
+                designSize: Size(360, 690),
+                builder: () => MaterialApp(
+                      title: "infixEdu",
+                      debugShowCheckedModeBanner: false,
+                      theme: basicTheme(),
+                      home: Stack(
+                        children: [
+                          FutureBuilder(
+                              future: _initialization,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasError) {
+                                  return Scaffold(
+                                    body: Center(
+                                      child: Text(
+                                        snapshot.error.toString(),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.done) {
+                                  return Scaffold(
+                                    body: Splash(),
+                                  );
+                                }
+                                return CircularProgressIndicator();
+                              }),
+                        ],
+                      ),
+                      localizationsDelegates: [
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      supportedLocales: [
+                        Locale("fa",
+                            "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
+                      ],
+                    ))
             : ScreenUtilInit(
-        designSize: Size(360, 690),
-        builder: () => MaterialApp(
-                title: "InfixEdu",
-                debugShowCheckedModeBanner: false,
-                theme: basicTheme(),
-                home: Scaffold(
-                  body: Splash(),
+                designSize: Size(360, 690),
+                builder: () => MaterialApp(
+                  title: "InfixEdu",
+                  debugShowCheckedModeBanner: false,
+                  theme: basicTheme(),
+                  home: Scaffold(
+                    body: Splash(),
+                  ),
                 ),
-              ),)
+              )
         : ScreenUtilInit(
-        designSize: Size(360, 690),
-    builder: () => Material(
-            child: Directionality(
-                textDirection: TextDirection.ltr,
-                child: Center(child: CupertinoActivityIndicator()))));
+            designSize: Size(360, 690),
+            builder: () => Material(
+                child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Center(child: CupertinoActivityIndicator()))));
   }
 }
