@@ -215,7 +215,7 @@ class _StudentHomeState extends State<StudentHome> {
         return HomeScreen();
         break;
       case 1:
-        return AbsentScreen();
+        return StudentScreen();
         break;
       case 2:
         return ChatScreen();

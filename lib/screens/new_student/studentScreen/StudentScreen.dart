@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/studentScreen/Absent.dart';
 import 'package:infixedu/screens/new_student/studentScreen/CalendarAndEvent.dart';
 
+import 'DailyActivities.dart';
+
 class StudentScreen extends StatefulWidget {
   const StudentScreen({key}) : super(key: key);
 
@@ -75,14 +77,21 @@ class _StudentScreenState extends State<StudentScreen> {
                             color: const Color(0xFF7dd3f7),
                           ),
                         ),
-                        child: Image(
-                            image: AssetImage(
-                                'assets/images/icons/daily_activities.png')),
-                      ),
+                        child: InkWell(
+                          onTap: () {
+                            _navigate(2);
+                          },
+                          child: Image(
+                              image: AssetImage(
+                                  'assets/images/icons/daily_activities.png')),
+                        ),
+                        ),
+
                       Flexible(
                           child: Padding(
                         padding: const EdgeInsets.only(top: 10.0),
                         child: Text(
+
                           'Daily Activities'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -361,6 +370,12 @@ class _StudentScreenState extends State<StudentScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => CalendarAndEvent()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DailyActivities()),
         );
         break;
       case 4:
