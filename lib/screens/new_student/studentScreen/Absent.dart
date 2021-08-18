@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/utils/Utils.dart';
 
+
 class AbsentScreen extends StatefulWidget {
   const AbsentScreen({key}) : super(key: key);
   @override
@@ -10,7 +11,7 @@ class AbsentScreen extends StatefulWidget {
 class _AbsentScreenState extends State<AbsentScreen> {
   bool _checkbox = false;
   String name;
-
+ 
   void initState() {
     super.initState();
     name = getName();
@@ -81,6 +82,11 @@ class _AbsentScreenState extends State<AbsentScreen> {
                 padding: new EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
               ),
             ),
+
+            Container(
+              
+              
+              ),
             Row(
               children: [
                 Padding(

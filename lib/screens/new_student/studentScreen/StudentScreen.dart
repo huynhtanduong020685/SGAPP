@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/studentScreen/Absent.dart';
 import 'package:infixedu/screens/new_student/studentScreen/CalendarAndEvent.dart';
+import 'package:infixedu/screens/new_student/studentScreen/GradeBook.dart';
 
 import 'DailyActivities.dart';
 
@@ -114,9 +115,14 @@ class _StudentScreenState extends State<StudentScreen> {
                             color: const Color(0xFF7dd3f7),
                           ),
                         ),
+                         child: InkWell(
+                          onTap: () {
+                            _navigate(3);
+                          }, 
                         child: Image(
                             image: AssetImage(
                                 'assets/images/icons/grade_book.png')),
+                         )
                       ),
                       Flexible(
                           child: Padding(
@@ -376,6 +382,12 @@ class _StudentScreenState extends State<StudentScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => DailyActivities()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => GradeBookScreen()),
         );
         break;
       case 4:
