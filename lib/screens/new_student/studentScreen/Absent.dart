@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/commonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
 
 class AbsentScreen extends StatefulWidget {
@@ -19,45 +20,7 @@ class _AbsentScreenState extends State<AbsentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
-          child: AppBar(
-            automaticallyImplyLeading: false,
-            toolbarHeight: 100,
-            primary: false,
-            centerTitle: false,
-            title: Row(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: 35.0,
-                        backgroundImage:
-                            AssetImage('assets/images/icons/student1.png'),
-                        backgroundColor: Colors.white,
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Text(
-                            name != null ? name : 'null',
-                            style: TextStyle(
-                                color: const Color(0xff07509d), fontSize: 23.0),
-                          ))
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            flexibleSpace: Image(
-              image: AssetImage('assets/images/tool_bar_bg.png'),
-              fit: BoxFit.cover,
-              height: 100.0,
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-          )),
+      appBar: AppBarWidget(),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: Column(
@@ -101,7 +64,9 @@ class _AbsentScreenState extends State<AbsentScreen> {
               padding: const EdgeInsets.only(top: 20),
               child: Row(
                 children: [
-                  Container(width: 150, child: Text('16/08/2021')),
+                  Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Text('16/08/2021')),
                   Checkbox(
                     value: _checkbox,
                     onChanged: (value) {
@@ -125,7 +90,9 @@ class _AbsentScreenState extends State<AbsentScreen> {
             ),
             Row(
               children: [
-                Container(width: 150, child: Text('17/08/2021')),
+                Container(
+                    width: MediaQuery.of(context).size.width / 3,
+                    child: Text('17/08/2021')),
                 Checkbox(
                   value: _checkbox,
                   onChanged: (value) {

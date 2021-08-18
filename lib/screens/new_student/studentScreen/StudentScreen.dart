@@ -27,7 +27,7 @@ class _StudentScreenState extends State<StudentScreen> {
                 primary: true,
                 padding: const EdgeInsets.all(20),
                 crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
+                mainAxisSpacing: 30,
                 crossAxisCount: 4,
                 children: <Widget>[
                   Container(
@@ -58,7 +58,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Calendar & Event'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -85,17 +85,15 @@ class _StudentScreenState extends State<StudentScreen> {
                               image: AssetImage(
                                   'assets/images/icons/daily_activities.png')),
                         ),
-                        ),
-
+                      ),
                       Flexible(
                           child: Padding(
                         padding: const EdgeInsets.only(top: 10.0),
                         child: Text(
-
                           'Daily Activities'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -125,7 +123,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Grade book'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -160,7 +158,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Absent'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -189,7 +187,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Menu'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -219,7 +217,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Photo Album'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -249,7 +247,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Clinic'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -288,7 +286,7 @@ class _StudentScreenState extends State<StudentScreen> {
                             'Student info'.toUpperCase(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 14,
                                 color: Color(0xff07509d)),
                           ))
                         ],
@@ -309,7 +307,7 @@ class _StudentScreenState extends State<StudentScreen> {
                             'Camp'.toUpperCase(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 14,
                                 color: Color(0xff07509d)),
                           ))
                         ],
@@ -329,7 +327,7 @@ class _StudentScreenState extends State<StudentScreen> {
                             'Fee & Payment'.toUpperCase(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 14,
                                 color: Color(0xff07509d)),
                           ))
                         ],
@@ -350,7 +348,7 @@ class _StudentScreenState extends State<StudentScreen> {
                             'Survey'.toUpperCase(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 14,
                                 color: Color(0xff07509d)),
                           ))
                         ],

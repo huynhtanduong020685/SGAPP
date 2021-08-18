@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/commonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
 
 class CalendarAndEvent extends StatefulWidget {
@@ -24,47 +25,7 @@ class _CalendarAndEventState extends State<CalendarAndEvent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(100.0),
-            child: AppBar(
-              automaticallyImplyLeading: false,
-              toolbarHeight: 100,
-              primary: false,
-              centerTitle: false,
-              title: Row(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 35.0,
-                          backgroundImage: AssetImage(
-                            'assets/images/icons/student1.png',
-                          ),
-                          backgroundColor: Colors.white,
-                        ),
-                        Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Text(
-                              name != null ? name : 'null',
-                              style: TextStyle(
-                                  color: const Color(0xff07509d),
-                                  fontSize: 23.0),
-                            ))
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              flexibleSpace: Image(
-                image: AssetImage('assets/images/tool_bar_bg.png'),
-                fit: BoxFit.fill,
-                height: 100.0,
-              ),
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-            )),
+        appBar: AppBarWidget(),
         body: Column(
           children: <Widget>[
             Padding(
