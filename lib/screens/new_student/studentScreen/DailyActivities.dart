@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/WeekCalendarWidget.dart';
 import 'package:infixedu/screens/new_student/HomeStudent.dart';
+import 'package:infixedu/screens/new_student/studentScreen/Widgets/AttendanceWidget.dart';
+import 'package:infixedu/screens/new_student/studentScreen/Widgets/CommentWidget.dart';
+import 'package:infixedu/screens/new_student/studentScreen/Widgets/HomeWorkWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
 
 class DailyActivities extends StatefulWidget {
@@ -13,6 +17,7 @@ class DailyActivitiesState extends State<DailyActivities>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   String name;
+  int _selectedIndex = 0;
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
@@ -73,760 +78,147 @@ class DailyActivitiesState extends State<DailyActivities>
             backgroundColor: Colors.transparent,
             elevation: 0.0,
           )),
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: DefaultTabController(
+      body:
+         DefaultTabController(
           length: 3,
           child: Column(
             children: [
-              Container(
-                height: 45,
-                decoration: BoxDecoration(
-                  color: Color(0xFF9EDEFF),
-                  borderRadius: BorderRadius.circular(
-                    45.0,
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    'DAILY ACTIVITIES',
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Color(0xFF144385),
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
               SizedBox(
                 height: 20,
               ),
-
-              // give the tab bar a height [can change hheight to preferred height]
-              Container(
-                // height: 45,
-                decoration: BoxDecoration(
-                  color: Color(0xFF9EDEFF),
-                  borderRadius: BorderRadius.circular(
-                    45.0,
-                  ),
-                ),
-                child: TabBar(
-                  controller: _tabController,
-                  // give the indicator a decoration (color and border radius)
-                  indicator: BoxDecoration(
+              Padding(
+                padding: EdgeInsets.only(left: 10.0,right: 10.0,bottom: 10.0,top: 10.0),
+                child: Container(
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF9EDEFF),
                     borderRadius: BorderRadius.circular(
-                      25.0,
+                      45.0,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 2), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      'DAILY ACTIVITIES',
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Color(0xFF144385),
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
-                  labelColor: Color(0xFF144385),
-                  unselectedLabelColor: Colors.grey,
-                  tabs: [
-                    // first tab [you can add an icon using the icon property]
-                    Tab(
-                      child: Text(
-                        'ATTENDANCE',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      icon: Image.asset(
-                        'assets/images/icons/17. DAILY ACTIVITIES.png',
-                        width: 35,
-                        height: 35,
-                        color: _tabController.index == 0
-                            ? Color(0xFF144385)
-                            : Colors.grey,
-                      ),
-                    ),
-                    // second tab [you can add an icon using the icon property]
-                    Tab(
-                      child: Text(
-                        'HOMEWORK',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      icon: Image.asset(
-                        'assets/images/icons/HOMEWORK.png',
-                        width: 35,
-                        height: 35,
-                        color: _tabController.index == 1
-                            ? Color(0xFF144385)
-                            : Colors.grey,
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        'COMMENT',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      icon: Image.asset(
-                        'assets/images/icons/5. COMMENT.png',
-                        width: 35,
-                        height: 35,
-                        color: _tabController.index == 2
-                            ? Color(0xFF144385)
-                            : Colors.grey,
-                      ),
-                    ),
-                  ],
                 ),
               ),
-              SizedBox(
-                height: 5,
+              WeekCalendarWidget(),
+              Padding(
+                padding:
+                const EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 3,
+                          offset: Offset(0, 1), // changes position of shadow
+                        ),
+                      ]),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: BottomNavigationBar(
+                      selectedItemColor: Color(0xff07509d),
+                      unselectedItemColor: Color(0xff888888),
+                      type: BottomNavigationBarType.fixed,
+                      showSelectedLabels: false,
+                      showUnselectedLabels: false,
+                      items: const <BottomNavigationBarItem>[
+                        BottomNavigationBarItem(
+                          icon: ImageIcon(
+                            AssetImage('assets/images/icons/17. DAILY ACTIVITIES.png'),
+                            size: 45,
+                          ),
+                          label: '',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: ImageIcon(
+                            AssetImage('assets/images/icons/HOMEWORK.png'),
+                            size: 45,
+                          ),
+                          label: '',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: ImageIcon(
+                            AssetImage('assets/images/icons/5. COMMENT.png'),
+                            size: 45,
+                          ),
+                          label: '',
+                        ),
+                      ],
+                      currentIndex: _selectedIndex,
+                      onTap: _onItemTapped,
+                    ),
+                  ),
+                ),
               ),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
+              Padding(
+                padding: const EdgeInsets.only(top: 5, left: 20.0, right: 20.0),
+                child: Row(
                   children: [
-                    ListView(
-                      padding: const EdgeInsets.all(10),
-                      children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(10),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "21/12/2021",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(10),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "22/12/2021",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(10),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "23/12/2021",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(10),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "24/12/2021",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(10),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "25/12/2021",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(10),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "26/12/2021",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(10),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "27/12/2021",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(10),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "28/12/2021",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    Container(
+                        width: (MediaQuery.of(context).size.width - 40) / 3,
+                        child: Text(
+                          'ATTENDANCE',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: _selectedIndex == 0
+                                  ? Color(0xff07509d)
+                                  : Color(0xffffffff)),
+                          textAlign: TextAlign.center,
+                        )),
+                    Container(
+                        width: (MediaQuery.of(context).size.width - 40) / 3,
+                        child: Text(
+                          'HOMEWORK',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: _selectedIndex == 1
+                                  ? Color(0xff07509d)
+                                  : Color(0xffffffff)),
+                          textAlign: TextAlign.center,
+                        )
                     ),
-                    ListView(
-                      padding: const EdgeInsets.all(10),
-                      children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "subject: Lorem ipsum",
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text('1'),
-                                  Text(
-                                    'Content: First Homework',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                  Text('25/12/2021',
-                                      style: TextStyle(color: Colors.grey)),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "subject: Lorem ipsum",
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text('1'),
-                                  Text(
-                                    'Content: First Homework',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                  Text('25/12/2021',
-                                      style: TextStyle(color: Colors.grey)),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "subject: Lorem ipsum",
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text('1'),
-                                  Text(
-                                    'Content: First Homework',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                  Text('25/12/2021',
-                                      style: TextStyle(color: Colors.grey)),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "subject: Lorem ipsum",
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text('1'),
-                                  Text(
-                                    'Content: First Homework',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                  Text('25/12/2021',
-                                      style: TextStyle(color: Colors.grey)),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "subject: Lorem ipsum",
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text('1'),
-                                  Text(
-                                    'Content: First Homework',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                  Text('25/12/2021',
-                                      style: TextStyle(color: Colors.grey)),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    ListView(
-                      padding: const EdgeInsets.all(10),
-                      children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "Teacher comment",
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(left: 20.0, right: 20.0),
-                                child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys '
-                                  'standard dummy text ever since the 1500s, when an unknown printer took a galley of type and '
-                                  'scrambled it to make a type specimen book. It has',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 20.0, right: 20.0),
-                                  child: Text(
-                                    'Read more',
-                                    style: TextStyle(
-                                      color: Color(0xFF144385),
-                                    ),
-                                  )),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  IconButton(
-                                      icon: Icon(Icons.add_circle),
-                                      color: Colors.grey,
-                                      tooltip: 'Like',
-                                      onPressed: () {}),
-                                  IconButton(
-                                      icon: Icon(Icons.add_comment),
-                                      color: Colors.grey,
-                                      tooltip: 'Comments',
-                                      onPressed: () {}),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "Teacher comment",
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(left: 20.0, right: 20.0),
-                                child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys '
-                                  'standard dummy text ever since the 1500s, when an unknown printer took a galley of type and '
-                                  'scrambled it to make a type specimen book. It has',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 20.0, right: 20.0),
-                                  child: Text(
-                                    'Read more',
-                                    style: TextStyle(
-                                      color: Color(0xFF144385),
-                                    ),
-                                  )),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  IconButton(
-                                      icon: Icon(Icons.add_circle),
-                                      color: Colors.grey,
-                                      tooltip: 'Like',
-                                      onPressed: () {}),
-                                  IconButton(
-                                      icon: Icon(Icons.add_comment),
-                                      color: Colors.grey,
-                                      tooltip: 'Comments',
-                                      onPressed: () {}),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "Teacher comment",
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(left: 20.0, right: 20.0),
-                                child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys '
-                                  'standard dummy text ever since the 1500s, when an unknown printer took a galley of type and '
-                                  'scrambled it to make a type specimen book. It has',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 20.0, right: 20.0),
-                                  child: Text(
-                                    'Read more',
-                                    style: TextStyle(
-                                      color: Color(0xFF144385),
-                                    ),
-                                  )),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  IconButton(
-                                      icon: Icon(Icons.add_circle),
-                                      color: Colors.grey,
-                                      tooltip: 'Like',
-                                      onPressed: () {}),
-                                  IconButton(
-                                      icon: Icon(Icons.add_comment),
-                                      color: Colors.grey,
-                                      tooltip: 'Comments',
-                                      onPressed: () {}),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "Teacher comment",
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(left: 20.0, right: 20.0),
-                                child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys '
-                                  'standard dummy text ever since the 1500s, when an unknown printer took a galley of type and '
-                                  'scrambled it to make a type specimen book. It has',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 20.0, right: 20.0),
-                                  child: Text(
-                                    'Read more',
-                                    style: TextStyle(
-                                      color: Color(0xFF144385),
-                                    ),
-                                  )),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  IconButton(
-                                      icon: Icon(Icons.add_circle),
-                                      color: Colors.grey,
-                                      tooltip: 'Like',
-                                      onPressed: () {}),
-                                  IconButton(
-                                      icon: Icon(Icons.add_comment),
-                                      color: Colors.grey,
-                                      tooltip: 'Comments',
-                                      onPressed: () {}),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          margin: EdgeInsets.all(15),
-                          color: Color(0xFFEBF6FF),
-                          shadowColor: Colors.blueGrey,
-                          elevation: 10,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const ListTile(
-                                title: Text(
-                                  "Teacher comment",
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(left: 20.0, right: 20.0),
-                                child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys '
-                                  'standard dummy text ever since the 1500s, when an unknown printer took a galley of type and '
-                                  'scrambled it to make a type specimen book. It has',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 20.0, right: 20.0),
-                                  child: Text(
-                                    'Read more',
-                                    style: TextStyle(
-                                      color: Color(0xFF144385),
-                                    ),
-                                  )),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  IconButton(
-                                      icon: Icon(Icons.add_circle),
-                                      color: Colors.grey,
-                                      tooltip: 'Like',
-                                      onPressed: () {}),
-                                  IconButton(
-                                      icon: Icon(Icons.add_comment),
-                                      color: Colors.grey,
-                                      tooltip: 'Comments',
-                                      onPressed: () {}),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    Container(
+                        width: (MediaQuery.of(context).size.width - 40) / 3,
+                        child: Text(
+                          'COMMENT',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: _selectedIndex == 2
+                                  ? Color(0xff07509d)
+                                  : Color(0xffffffff)),
+                          textAlign: TextAlign.center,
+                        )
+                    )
                   ],
                 ),
+              ),
+              Container(
+                child: Expanded(child: viewlist(_selectedIndex)),
               ),
             ],
           ),
         ),
-      ),
+
     );
   }
   String getName() {
@@ -836,5 +228,24 @@ class DailyActivitiesState extends State<DailyActivities>
       });
     });
     return name;
+  }
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  Widget viewlist(_selectedIndex) {
+    switch (_selectedIndex) {
+      case 0:
+        return AttendanceList();
+        break;
+      case 1:
+        return HomeWorkList();
+        break;
+      case 2:
+        return CommentList();
+        break;
+    }
   }
 }
