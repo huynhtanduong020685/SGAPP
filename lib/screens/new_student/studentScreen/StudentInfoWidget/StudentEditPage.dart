@@ -3,14 +3,14 @@ import 'package:infixedu/screens/new_student/studentScreen/StudentInfoWidget/Stu
 import 'package:infixedu/screens/new_student/studentScreen/StudentInfoWidget/StudentInfoADM.dart';
 import 'package:infixedu/utils/Utils.dart';
 
-class StudentInfoPage extends StatefulWidget {
-  const StudentInfoPage({key}) : super(key: key);
+class StudentEditPage extends StatefulWidget {
+  const StudentEditPage({key}) : super(key: key);
 
   @override
-  State<StudentInfoPage> createState() => StudentInfoPageState();
+  State<StudentEditPage> createState() => StudentEditPageState();
 }
 
-class StudentInfoPageState extends State<StudentInfoPage>
+class StudentEditPageState extends State<StudentEditPage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   String name;
@@ -52,7 +52,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
                       CircleAvatar(
                         radius: 35.0,
                         backgroundImage:
-                            AssetImage('assets/images/icons/student1.png'),
+                        AssetImage('assets/images/icons/student1.png'),
                         backgroundColor: Colors.white,
                       ),
                       Padding(
@@ -141,8 +141,8 @@ class StudentInfoPageState extends State<StudentInfoPage>
                 ),
                 Expanded(
                   child: TabBarView(children: [
-                    StudentInfo(),
-                    StudentInfoADM(),
+                    Text("Student Info Edit"),
+                    Text("Family Info Edit"),
                   ]),
                 ),
               ],

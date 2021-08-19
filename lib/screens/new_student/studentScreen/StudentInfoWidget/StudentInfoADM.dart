@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/studentScreen/StudentInfoWidget/FamilyInfoEdit.dart';
+import 'package:infixedu/screens/new_student/studentScreen/StudentInfoWidget/StudentEditPage.dart';
 
 class StudentInfoADM extends StatefulWidget {
   const StudentInfoADM({key}) : super(key: key);
@@ -13,123 +15,163 @@ List listItem = ["Item 1", "Item 2", "Item 3", "Item 4"];
 class _StudentInfoADMState extends State<StudentInfoADM> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          border: Border.all(width: 2, color: Color(0xFF9EDEFF)),
-        ),
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: 20),
-          children: [
-            Text(
-              "PERSONAL INFO",
+    return ListView(
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+            padding: EdgeInsets.only(left: 10, bottom: 20.0, top: 10.0),
+            child: Text(
+              "FATHER INFORMATION",
               style: TextStyle(
-                  fontSize: 20,
                   color: Color(0xFF9EDEFF),
+                  fontSize: 18,
                   fontWeight: FontWeight.bold),
+            )),
+        Padding(
+          padding: EdgeInsets.only(left: 10.0, right: 10.0),
+          child: Container(
+            padding: EdgeInsets.all(30),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(width: 2, color: Color(0xFF9EDEFF)),
             ),
-            DropdownButton(
-              hint: Text("ACADEMIC YEAR"),
-              dropdownColor: Colors.grey,
-              icon: Icon(Icons.arrow_drop_down),
-              iconSize: 36,
-              isExpanded: true,
-              value: valueChoose,
-              onChanged: (newValue) {
-                setState(() {
-                  valueChoose = newValue;
-                });
-              },
-              items: listItem.map((valueItem) {
-                return DropdownMenuItem(
-                    value: valueItem, child: Text(valueItem));
-              }).toList(),
-            ),
-            DropdownButton(
-              hint: Text("CLASS"),
-              dropdownColor: Colors.grey,
-              icon: Icon(Icons.arrow_drop_down),
-              iconSize: 36,
-              isExpanded: true,
-              value: valueChoose,
-              onChanged: (newValue) {
-                setState(() {
-                  valueChoose = newValue;
-                });
-              },
-              items: listItem.map((valueItem) {
-                return DropdownMenuItem(
-                    value: valueItem, child: Text(valueItem));
-              }).toList(),
-            ),
-            DropdownButton(
-              hint: Text("SECTION"),
-              dropdownColor: Colors.grey,
-              icon: Icon(Icons.arrow_drop_down),
-              iconSize: 36,
-              isExpanded: true,
-              value: valueChoose,
-              onChanged: (newValue) {
-                setState(() {
-                  valueChoose = newValue;
-                });
-              },
-              items: listItem.map((valueItem) {
-                return DropdownMenuItem(
-                    value: valueItem, child: Text(valueItem));
-              }).toList(),
-            ),
-            DropdownButton(
-              hint: Text("ACADEMIC NUMBER"),
-              dropdownColor: Colors.grey,
-              icon: Icon(Icons.arrow_drop_down),
-              iconSize: 36,
-              isExpanded: true,
-              value: valueChoose,
-              onChanged: (newValue) {
-                setState(() {
-                  valueChoose = newValue;
-                });
-              },
-              items: listItem.map((valueItem) {
-                return DropdownMenuItem(
-                    value: valueItem, child: Text(valueItem));
-              }).toList(),
-            ),
-            DropdownButton(
-              hint: Text("ROLL NUMBER"),
-              dropdownColor: Colors.grey,
-              icon: Icon(Icons.arrow_drop_down),
-              iconSize: 36,
-              isExpanded: true,
-              value: valueChoose,
-              onChanged: (newValue) {
-                setState(() {
-                  valueChoose = newValue;
-                });
-              },
-              items: listItem.map((valueItem) {
-                return DropdownMenuItem(
-                    value: valueItem, child: Text(valueItem));
-              }).toList(),
-            ),
-            SizedBox(height: 15,),
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'FIRST NAME'),
-            ),
-            SizedBox(height: 15,),
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'MIDDLE NAME'),
-            ),
-            SizedBox(height: 15,),
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'LAST AME'),
-            ),
-          ],
-        ));
+            child: Column(children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  children: [
+                    Expanded(child: Text("Full name: ")),
+                    Expanded(
+                        child: Text(
+                      "Huynh Tan Duong",
+                      style: TextStyle(color: Color(0xFF144385)),
+                    )),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  children: [
+                    Expanded(child: Text("Nationality: ")),
+                    Expanded(
+                        child: Text("Viet Nam",
+                            style: TextStyle(color: Color(0xFF144385)))),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  children: [
+                    Expanded(child: Text("Company: ")),
+                    Expanded(
+                        child: Text(
+                            "Residential #5, Sử Hy Nhan, Phường THạnh Mỹ Lợi, Quận 2, Thành phố Hồ Chí Minh",
+                            style: TextStyle(color: Color(0xFF144385)))),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Text("Phone: ",
+                            overflow: TextOverflow.ellipsis, maxLines: 1)),
+                    Expanded(
+                        child: Text("012345678",
+                            style: TextStyle(color: Color(0xFF144385)))),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  children: [
+                    Expanded(child: Text("Personal email: ")),
+                    Expanded(
+                        child: Text("duonghuynh@sgstar.edu.vn",
+                            style: TextStyle(color: Color(0xFF144385)))),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  children: [
+                    Expanded(child: Text("First language: ")),
+                    Expanded(
+                        child: Text("Vietnamese",
+                            style: TextStyle(color: Color(0xFF144385)))),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  children: [
+                    Expanded(child: Text("English level: ")),
+                    Expanded(
+                        child: Text("Native",
+                            style: TextStyle(color: Color(0xFF144385)))),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Row(
+                  children: [
+                    Expanded(child: Text("Home address in Ho Chi MInh City: ")),
+                    Expanded(
+                        child: Text(
+                            "Residential #5, Sử Hy Nhan, Phường THạnh Mỹ Lợi, Quận 2, Thành phố Hồ Chí Minh",
+                            style: TextStyle(color: Color(0xFF144385)))),
+                  ],
+                ),
+              ),
+            ]),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+                 Container(
+                  // margin: EdgeInsets.all(25),
+                  child: OutlineButton(
+                    child: Text("Enter information for the first time",
+                        style: TextStyle(color: Color(0xFF144385))),
+                    highlightedBorderColor: Color(0xFF9EDEFF),
+                    borderSide: BorderSide(color: Color(0xFF9EDEFF)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    onPressed: () {},
+                  ),
+                ),
+
+                 Container(
+                  // margin: EdgeInsets.all(25),
+                  child: FlatButton(
+                    child: Text("Edit", style: TextStyle(color: Colors.white)),
+                    color: Color(0xFF9EDEFF),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FamilyInfoEdit()),
+                      );
+                    },
+                  ),
+                ),
+
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
