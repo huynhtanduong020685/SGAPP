@@ -59,20 +59,23 @@ class _GalleryScreenState extends State<GalleryScreen> {
                     options: CarouselOptions(
                       enableInfiniteScroll: true,
                       enlargeCenterPage: false,
-                      autoPlay: true,
+                      autoPlay: false,
                     ),
-                    items: imageList.map((e) => ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Image.network(e,
-                            width: 100,
-                            height: 350,
-                            fit: BoxFit.cover)
-                          ],
+                    items: imageList.map((e) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(e,
+                              width: 100,
+                              height: 350,
+                              fit: BoxFit.cover)
+                            ],
+                        ),
+                        
                       ),
-                      
                     )).toList(),
                     ),
               ),
