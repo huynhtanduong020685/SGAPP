@@ -4,6 +4,7 @@ import 'package:infixedu/screens/new_student/studentScreen/CalendarAndEvent.dart
 import 'package:infixedu/screens/new_student/studentScreen/ClinicScreen.dart';
 import 'package:infixedu/screens/new_student/studentScreen/GradeBook.dart';
 import 'package:infixedu/screens/new_student/studentScreen/StudentInfoPage.dart';
+import 'package:infixedu/screens/new_student/studentScreen/survey.dart';
 
 import 'DailyActivities.dart';
 import 'StudentTransitions.dart';
@@ -356,6 +357,10 @@ class _StudentScreenState extends State<StudentScreen> {
                         color: Color(0xffebf6ff),
                       ),
                       padding: const EdgeInsets.all(5),
+                      child: InkWell(
+                        onTap: () {
+                          _navigate_bottom(4);
+                        },
                       child: Row(
                         children: <Widget>[
                           Image(
@@ -368,9 +373,11 @@ class _StudentScreenState extends State<StudentScreen> {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17,
                                 color: Color(0xff07509d)),
-                          ))
+                          )
+                          )
                         ],
                       )),
+                  )
                 ],
               ),
             ),
@@ -384,6 +391,12 @@ class _StudentScreenState extends State<StudentScreen> {
     switch (num) {
       case 1:
         Navigator.push(context, BouncyAnimation(widget: StudentInfoPage()));
+        break;
+       case 4:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SurveyScreen()),
+        );
         break;
       default:
         break;
