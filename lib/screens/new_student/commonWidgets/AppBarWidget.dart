@@ -19,34 +19,34 @@ class _AppBarWidgetState extends State<AppBarWidget> {
           toolbarHeight: 100,
           primary: false,
           centerTitle: false,
-          title: Row(
+          title: Stack(
             children: <Widget>[
               Align(
                 alignment: Alignment.centerLeft,
-                child: CircleAvatar(
-                  radius: 35.0,
-                  backgroundImage:
-                      AssetImage('assets/images/icons/student1.png'),
-                  backgroundColor: Colors.white,
+                child: Row(
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 35.0,
+                      backgroundImage:
+                          AssetImage('assets/images/icons/student1.png'),
+                      backgroundColor: Colors.white,
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Text(
+                              getName() != null ? getName() : 'null',
+                              style: TextStyle(
+                                  color: const Color(0xff07509d),
+                                  fontSize: 23.0),
+                            )),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 120,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Text(
-                        getName() != null ? getName() : 'null',
-                        style: TextStyle(
-                            color: const Color(0xff07509d), fontSize: 22.0),
-                        softWrap: false,
-                      ),
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
           flexibleSpace: Image(

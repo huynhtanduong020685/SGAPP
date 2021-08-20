@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/date_of_week_widget.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/week_new_calendar.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/year_calendar.dart';
 import 'package:infixedu/utils/Utils.dart';
 
 class GradeBookScreen extends StatefulWidget {
@@ -116,7 +119,10 @@ class _GradeBookScreenState extends State<GradeBookScreen>
               children: [
                 ListView(
                   children: [
-                    
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Week2CalendarWidget(),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Card(
@@ -436,6 +442,7 @@ class _GradeBookScreenState extends State<GradeBookScreen>
                 ),
                 ListView(
                   children: [
+                    YearCalendarWidget(),
                     Padding(
                       padding: const EdgeInsets.only(top: 30),
                       child: Container(
