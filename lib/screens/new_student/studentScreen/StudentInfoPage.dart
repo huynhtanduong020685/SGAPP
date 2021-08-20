@@ -85,6 +85,14 @@ class StudentInfoPageState extends State<StudentInfoPage>
                   width: 315,
                   height: 65,
                   decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 2,
+                        offset: Offset(0, 2), // changes position of shadow
+                      ),
+                    ],
                     color: Color(0xFF9EDEFF),
                     borderRadius: BorderRadius.circular(
                       45.0,
@@ -108,6 +116,14 @@ class StudentInfoPageState extends State<StudentInfoPage>
                     indicatorSize: TabBarIndicatorSize.label,
                     labelColor: Colors.white,
                     indicator: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                            offset: Offset(0, 2), // changes position of shadow
+                          ),
+                        ],
                         borderRadius: BorderRadius.circular(50),
                         color: Color(0xFF9EDEFF)),
                     tabs: [

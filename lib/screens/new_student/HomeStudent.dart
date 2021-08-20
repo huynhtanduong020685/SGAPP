@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/login/login_new.dart';
 import 'package:infixedu/screens/new_student/BusScreen/BusScreen.dart';
 import 'package:infixedu/screens/new_student/ChatScreen/ChatScreen.dart';
 import 'package:infixedu/screens/new_student/ELearningScreen/ElearningScreen.dart';
@@ -69,6 +70,7 @@ class _StudentHomeState extends State<StudentHome> {
             ),
             onPressed: () {
               clear();
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
             },
           ),
           Padding(

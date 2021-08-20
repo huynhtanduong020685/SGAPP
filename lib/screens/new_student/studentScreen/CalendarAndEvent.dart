@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
-import 'package:infixedu/screens/new_student/CommonWidgets/WeekCalendarWidget.dart';
-import 'package:infixedu/screens/new_student/studentScreen/Widgets/CalendarListView.dart';
-import 'package:infixedu/screens/new_student/studentScreen/Widgets/EventListView.dart';
+import 'package:infixedu/screens/new_student/commonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
 
 class CalendarAndEvent extends StatefulWidget {
@@ -14,145 +11,147 @@ class CalendarAndEvent extends StatefulWidget {
 
 class _CalendarAndEventState extends State<CalendarAndEvent> {
   String name;
-  int _selectedIndex = 0;
+
+  DateTime firstDayOfPrevWeek;
+  DateTime firstDayOfNextWeek;
 
   void initState() {
     super.initState();
+    name = getName();
+
+    getThisWeekDates();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBarWidget(),
-        body: Container(
-          color: Colors.white,
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding:
-                const EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Color(0xFF7dd3f7),
-                      borderRadius: BorderRadius.circular(40),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 2,
-                          offset: Offset(0, 2), // changes position of shadow
-                        ),
-                      ]),
-                  child: Center(
-                    child: Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15),
-                        child: Text('CALENDAR & EVENT',
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff07509d)))),
-                  ),
+        body: Column(
+          children: <Widget>[
+            Padding(
+              padding:
+                  const EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Color(0xFF7dd3f7),
+                  borderRadius: BorderRadius.circular(40),
                 ),
-              ),
-              WeekCalendarWidget(),
-              Padding(
-                padding:
-                const EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 3,
-                          offset: Offset(0, 1), // changes position of shadow
-                        ),
-                      ]),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(40),
-                    child: BottomNavigationBar(
-                      selectedItemColor: Color(0xff07509d),
-                      unselectedItemColor: Color(0xff888888),
-                      type: BottomNavigationBarType.fixed,
-                      showSelectedLabels: false,
-                      showUnselectedLabels: false,
-                      items: const <BottomNavigationBarItem>[
-                        BottomNavigationBarItem(
-                          icon: ImageIcon(
-                            AssetImage('assets/images/icons/calendar.png'),
-                            size: 35,
-                          ),
-                          label: '',
-                        ),
-                        BottomNavigationBarItem(
-                          icon: ImageIcon(
-                            AssetImage('assets/images/icons/event.png'),
-                            size: 35,
-                          ),
-                          label: '',
-                        ),
-                      ],
-                      currentIndex: _selectedIndex,
-                      onTap: _onItemTapped,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5, left: 20.0, right: 20.0),
-                child: Row(
-                  children: [
-                    Container(
-                        width: (MediaQuery.of(context).size.width - 40) / 2,
-                        child: Text(
-                          'CALENDAR',
+                child: Center(
+                  child: Padding(
+                      padding: const EdgeInsets.only(top: 15.0, bottom: 15),
+                      child: Text('CALENDAR & EVENT',
                           style: TextStyle(
+                              fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: _selectedIndex == 0
-                                  ? Color(0xff07509d)
-                                  : Color(0xffffffff)),
-                          textAlign: TextAlign.center,
-                        )),
-                    Container(
-                        width: (MediaQuery.of(context).size.width - 40) / 2,
-                        child: Text(
-                          'EVENT',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: _selectedIndex == 1
-                                  ? Color(0xff07509d)
-                                  : Color(0xffffffff)),
-                          textAlign: TextAlign.center,
-                        ))
-                  ],
+                              color: Color(0xff07509d)))),
                 ),
               ),
-              Container(
-                child: Expanded(child: viewlist(_selectedIndex)),
-              )
-            ],
-          ),
+            ),
+            Row(
+              children: <Widget>[
+                TextButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blue),
+                  ),
+                  onPressed: () {
+                    getPrevWeekDates();
+                  },
+                  child: Text('prev week'),
+                ),
+                TextButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blue),
+                  ),
+                  onPressed: () {
+                    getThisWeekDates();
+                  },
+                  child: Text('TextButton'),
+                ),
+                TextButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blue),
+                  ),
+                  onPressed: () {
+                    getNextWeekDates();
+                  },
+                  child: Text('Next week'),
+                ),
+              ],
+            ),
+          ],
         ));
   }
 
-  void _onItemTapped(int index) {
+  String getName() {
+    Utils.getStringValue('full_name').then((value) {
+      setState(() {
+        name = value;
+      });
+    });
+    return name;
+  }
+
+  void getThisWeekDates() {
+    DateTime now = DateTime.now();
+
+    int currentDay = now.weekday;
+    DateTime sunday = now.subtract(Duration(days: currentDay));
+    DateTime monday = now.subtract(Duration(days: currentDay - 1));
+    DateTime tuesday = now.subtract(Duration(days: currentDay - 2));
+    DateTime wednesday = now.subtract(Duration(days: currentDay - 3));
+    DateTime thursday = now.subtract(Duration(days: currentDay - 4));
+    DateTime friday = now.subtract(Duration(days: currentDay - 5));
+    DateTime saturday = now.subtract(Duration(days: currentDay - 6));
+
     setState(() {
-      _selectedIndex = index;
+      firstDayOfNextWeek = now.subtract(Duration(days: currentDay - 7));
+      firstDayOfPrevWeek = now.subtract(Duration(days: currentDay + 7));
     });
   }
 
-  Widget viewlist(_selectedIndex) {
-    switch (_selectedIndex) {
-      case 0:
-        return CalendarListView();
-        break;
-      case 1:
-        return EventListView();
-        break;
-    }
+  void getNextWeekDates() {
+    DateTime now = firstDayOfNextWeek;
+
+    int currentDay = 0;
+    DateTime sunday = now.subtract(Duration(days: currentDay));
+    DateTime monday = now.subtract(Duration(days: currentDay - 1));
+    DateTime tuesday = now.subtract(Duration(days: currentDay - 2));
+    DateTime wednesday = now.subtract(Duration(days: currentDay - 3));
+    DateTime thursday = now.subtract(Duration(days: currentDay - 4));
+    DateTime friday = now.subtract(Duration(days: currentDay - 5));
+    DateTime saturday = now.subtract(Duration(days: currentDay - 6));
+
+    setState(() {
+      firstDayOfNextWeek = now.subtract(Duration(days: currentDay - 7));
+      firstDayOfPrevWeek = now.subtract(Duration(days: currentDay + 7));
+    });
+
+    print('sunday: ${sunday}');
+    print('saturday: ${saturday}');
+  }
+
+  void getPrevWeekDates() {
+    DateTime now = firstDayOfPrevWeek;
+
+    int currentDay = 0;
+    DateTime sunday = now.subtract(Duration(days: currentDay));
+    DateTime monday = now.subtract(Duration(days: currentDay - 1));
+    DateTime tuesday = now.subtract(Duration(days: currentDay - 2));
+    DateTime wednesday = now.subtract(Duration(days: currentDay - 3));
+    DateTime thursday = now.subtract(Duration(days: currentDay - 4));
+    DateTime friday = now.subtract(Duration(days: currentDay - 5));
+    DateTime saturday = now.subtract(Duration(days: currentDay - 6));
+
+    setState(() {
+      firstDayOfNextWeek = now.subtract(Duration(days: currentDay - 7));
+      firstDayOfPrevWeek = now.subtract(Duration(days: currentDay + 7));
+    });
+
+    print('sunday: ${sunday}');
+    print('saturday: ${saturday}');
   }
 }

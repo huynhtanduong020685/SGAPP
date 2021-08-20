@@ -64,7 +64,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Calendar & Event'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -99,7 +99,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Daily Activities'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -133,7 +133,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Grade book'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -168,7 +168,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Absent'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -197,7 +197,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Menu'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -220,10 +220,11 @@ class _StudentScreenState extends State<StudentScreen> {
                           onTap: () {
                             _navigate(6);
                           },
-                        child: Image(
-                            image: AssetImage(
-                                'assets/images/icons/std_album.png')),
-                      ),),
+                          child: Image(
+                              image: AssetImage(
+                                  'assets/images/icons/std_album.png')),
+                        ),
+                      ),
                       Flexible(
                           child: Padding(
                         padding: const EdgeInsets.only(top: 10.0),
@@ -231,7 +232,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Photo Album'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -242,23 +243,22 @@ class _StudentScreenState extends State<StudentScreen> {
                       child: Column(
                     children: <Widget>[
                       Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            width: 2,
-                            color: const Color(0xFF7dd3f7),
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 2,
+                              color: const Color(0xFF7dd3f7),
+                            ),
                           ),
-                        ),
-                        child: InkWell(
-                          onTap: () {
-                            _navigate(7);
-                          },
-                        child: Image(
-                            image:
-                                AssetImage('assets/images/icons/clinic.png')),
-                        )
-                      ),
+                          child: InkWell(
+                            onTap: () {
+                              _navigate(7);
+                            },
+                            child: Image(
+                                image: AssetImage(
+                                    'assets/images/icons/clinic.png')),
+                          )),
                       Flexible(
                           child: Padding(
                         padding: const EdgeInsets.only(top: 10.0),
@@ -266,7 +266,7 @@ class _StudentScreenState extends State<StudentScreen> {
                           'Clinic'.toUpperCase(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xff07509d)),
                           textAlign: TextAlign.center,
                         ),
@@ -309,7 +309,7 @@ class _StudentScreenState extends State<StudentScreen> {
                               'Student info'.toUpperCase(),
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 17,
+                                  fontSize: 14,
                                   color: Color(0xff07509d)),
                             ))
                           ],
@@ -331,7 +331,7 @@ class _StudentScreenState extends State<StudentScreen> {
                             'Camp'.toUpperCase(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 14,
                                 color: Color(0xff07509d)),
                           ))
                         ],
@@ -351,37 +351,36 @@ class _StudentScreenState extends State<StudentScreen> {
                             'Fee & Payment'.toUpperCase(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 14,
                                 color: Color(0xff07509d)),
                           ))
                         ],
                       )),
                   Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0xffebf6ff),
-                      ),
-                      padding: const EdgeInsets.all(5),
-                      child: InkWell(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color(0xffebf6ff),
+                    ),
+                    padding: const EdgeInsets.all(5),
+                    child: InkWell(
                         onTap: () {
                           _navigate_bottom(4);
                         },
-                      child: Row(
-                        children: <Widget>[
-                          Image(
-                              image:
-                                  AssetImage('assets/images/icons/survey.png')),
-                          Flexible(
-                              child: Text(
-                            'Survey'.toUpperCase(),
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                                color: Color(0xff07509d)),
-                          )
-                          )
-                        ],
-                      )),
+                        child: Row(
+                          children: <Widget>[
+                            Image(
+                                image: AssetImage(
+                                    'assets/images/icons/survey.png')),
+                            Flexible(
+                                child: Text(
+                              'Survey'.toUpperCase(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  color: Color(0xff07509d)),
+                            ))
+                          ],
+                        )),
                   )
                 ],
               ),
@@ -395,9 +394,12 @@ class _StudentScreenState extends State<StudentScreen> {
   void _navigate_bottom(int num) {
     switch (num) {
       case 1:
-        Navigator.push(context, BouncyAnimation(widget: StudentInfoPage()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => StudentInfoPage()),
+        );
         break;
-       case 4:
+      case 4:
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => SurveyScreen()),
@@ -411,10 +413,16 @@ class _StudentScreenState extends State<StudentScreen> {
   void _navigate(int num) {
     switch (num) {
       case 1:
-        Navigator.push(context, BouncyAnimation(widget: CalendarAndEvent()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CalendarAndEvent()),
+        );
         break;
       case 2:
-        Navigator.push(context, BouncyAnimation(widget: DailyActivities()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DailyActivities()),
+        );
         break;
       case 3:
         Navigator.push(
@@ -423,11 +431,15 @@ class _StudentScreenState extends State<StudentScreen> {
         );
         break;
       case 4:
-        Navigator.push(context, BouncyAnimation(widget: AbsentScreen()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AbsentScreen()),
+        );
         break;
       case 6:
-        Navigator.push(context,  MaterialPageRoute(builder: (context) => GalleryScreen())
-        );
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => GalleryScreen()));
         break;
       case 7:
         Navigator.push(

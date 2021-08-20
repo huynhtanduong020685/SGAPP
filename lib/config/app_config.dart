@@ -4,6 +4,8 @@ class AppConfig {
 
   static String appLogo = 'assets/config/app_logo.png';
 
+  static String loginLogo= 'assets/images/logo_icon/launcher.png';
+
   static String splashScreenBackground = 'assets/config/splash_bg.png';
 
   static String splashTopLine = 'assets/config/splash_top_line.png';

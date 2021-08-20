@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
+import 'package:intl/intl.dart';
 
 enum GenderSelect { Male, Female }
 
@@ -13,7 +14,7 @@ class StudentInfoEdit extends StatefulWidget {
 
 class _StudentInfoEditState extends State<StudentInfoEdit> {
   TextEditingController _controller = TextEditingController();
-  String dropdownValue = 'One';
+  String dropdownValue = 'Enrol in';
   GenderSelect _gender = GenderSelect.Male;
 
   @override
@@ -58,28 +59,61 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              FlatButton(
-                child: Text(
-                  "STUDENT INFO",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+              Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 8,
+                      offset: Offset(0, 3),
+                    )
+                  ],
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(25.0),
+                  ),
                 ),
-                onPressed: () {},
-                color: Color(0xFF9EDEFF),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: Color(0xFF9EDEFF))),
+                child: FlatButton(
+                  child: Text(
+                    "STUDENT INFO",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () {},
+                  color: Color(0xFF9EDEFF),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: Color(0xFF9EDEFF))),
+                ),
               ),
-              FlatButton(
-                child: Text(
-                  "FAMILY INFO",
-                  style: TextStyle(
-                      color: Color(0xFF144385), fontWeight: FontWeight.bold),
+              Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 8,
+                      offset: Offset(0, 3),
+                    )
+                  ],
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(25.0),
+                  ),
                 ),
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: Color(0xFF9EDEFF))),
+                child: FlatButton(
+                  child: Text(
+                    "FAMILY INFO",
+                    style: TextStyle(
+                        color: Color(0xFF144385), fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () {},
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: Color(0xFF9EDEFF))),
+                ),
               ),
             ],
           ),
@@ -105,7 +139,9 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
                         child: TextField(
                           obscureText: true,
                           decoration: InputDecoration(
-                              labelStyle: TextStyle(color: Color(0xFF144385)),
+                              labelStyle: TextStyle(
+                                  color: Color(0xFF58595B)
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                                 borderSide:
@@ -127,7 +163,9 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
                         child: TextField(
                           obscureText: true,
                           decoration: InputDecoration(
-                              labelStyle: TextStyle(color: Color(0xFF144385)),
+                              labelStyle: TextStyle(
+                                  color: Color(0xFF58595B)
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                                 borderSide:
@@ -149,7 +187,9 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
                         child: TextField(
                           obscureText: true,
                           decoration: InputDecoration(
-                              labelStyle: TextStyle(color: Color(0xFF144385)),
+                              labelStyle: TextStyle(
+                                  color: Color(0xFF58595B)
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                                 borderSide:
@@ -213,7 +253,9 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
             child: TextField(
               obscureText: true,
               decoration: InputDecoration(
-                  labelStyle: TextStyle(color: Color(0xFF144385)),
+                  labelStyle: TextStyle(
+                      color: Color(0xFF58595B)
+                  ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15.0),
                     borderSide: BorderSide(color: Color(0xFF9EDEFF)),
@@ -230,58 +272,67 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
           ),
           Padding(
             padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                        labelStyle: TextStyle(color: Color(0xFF144385)),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide: BorderSide(color: Color(0xFF9EDEFF)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide: BorderSide(color: Color(0xFF9EDEFF)),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        labelText: "Date of Birth(dd/mm/yy)"),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                border: Border.all(
+                    color: Color(0xFF9EDEFF), // Set border color
+                    width: 1.0),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      readOnly: true,
+                      controller: _controller,
+                      decoration: InputDecoration(
+                          labelStyle: TextStyle(
+                              color: Color(0xFF58595B)
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                            borderSide: BorderSide(color: Colors.transparent),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                            borderSide: BorderSide(color: Colors.transparent),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          labelText: "Date of Birth(dd/mm/yy)"),
+                    ),
                   ),
-                ),
-                IconButton(
-                  icon: Icon(Icons.calendar_today_outlined),
-                  color: Colors.grey,
-                  onPressed: () {
-                    showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2019, 1),
-                        lastDate: DateTime(2021, 12),
-                        builder: (context, picker) {
+                  IconButton(
+                    icon: Icon(Icons.calendar_today_outlined),
+                    color: Colors.grey,
+                    onPressed: () {
+                      showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2999),
+                        builder: (BuildContext context, Widget child) {
                           return Theme(
-                            //TODO: change colors
-                            data: ThemeData.dark().copyWith(
-                              colorScheme: ColorScheme.dark(
-                                primary: Color(0xFF9EDEFF),
-                                onPrimary: Colors.white,
-                                surface: Color(0xFF9EDEFF),
-                                onSurface: Colors.black,
-                              ),
-                              dialogBackgroundColor: Colors.white,
+                            data: ThemeData.light().copyWith(
+                                primaryColor: const Color(0xff7cd3f7),//Head background
+                                accentColor: const Color(0xff7cd3f7)//selection color
+                              //dialogBackgroundColor: Colors.white,//Background color
                             ),
-                            child: picker,
+                            child: child,
                           );
-                        }).then((selectedDate) {
-                      if (selectedDate != null) {
-                        _controller.text = selectedDate.toString();
-                      }
-                    });
-                  },
-                ),
-              ],
+                        },
+                          ).then((selectedDate) {
+                        if (selectedDate != null) {
+                          // String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate).toString();
+                          // print(formattedDate);
+                          _controller.text = DateFormat('dd-MM-yyyy').format(selectedDate).toString();
+                        }
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           Padding(
@@ -293,39 +344,49 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
                     color: Color(0xFF9EDEFF), // Set border color
                     width: 1.0),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("Gender"),
-                  Expanded(
-                    child: ListTile(
-                      title: const Text('Male'),
-                      leading: Radio<GenderSelect>(
-                        value: GenderSelect.Male,
-                        groupValue: _gender,
-                        onChanged: (GenderSelect value) {
-                          setState(() {
-                            _gender = value;
-                          });
-                        },
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.0,left: 10),
+                      child: Text("Gender",style: TextStyle(fontWeight: FontWeight.bold),)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      Expanded(
+                        child: ListTile(
+                          title: const Text('Male',style: TextStyle(color: Color(0xFF58595B)),),
+                          leading: Radio<GenderSelect>(
+                            value: GenderSelect.Male,
+                            groupValue: _gender,
+                            onChanged: (GenderSelect value) {
+                              setState(() {
+                                _gender = value;
+                              });
+                            },
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      title: const Text('Female'),
-                      leading: Radio<GenderSelect>(
-                        value: GenderSelect.Female,
-                        groupValue: _gender,
-                        onChanged: (GenderSelect value) {
-                          setState(() {
-                            _gender = value;
-                          });
-                        },
+                      Expanded(
+                        child: ListTile(
+                          title: const Text('Female',style: TextStyle(color: Color(0xFF58595B))),
+                          leading: Radio<GenderSelect>(
+                            value: GenderSelect.Female,
+                            groupValue: _gender,
+                            onChanged: (GenderSelect value) {
+                              setState(() {
+                                _gender = value;
+                              });
+                            },
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
+
               ),
             ),
           ),
@@ -334,7 +395,9 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
             child: TextField(
               obscureText: true,
               decoration: InputDecoration(
-                  labelStyle: TextStyle(color: Color(0xFF144385)),
+                  labelStyle: TextStyle(
+                      color: Color(0xFF58595B)
+                  ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15.0),
                     borderSide: BorderSide(color: Color(0xFF9EDEFF)),
@@ -354,7 +417,9 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
             child: TextField(
               obscureText: true,
               decoration: InputDecoration(
-                  labelStyle: TextStyle(color: Color(0xFF144385)),
+                  labelStyle: TextStyle(
+                      color: Color(0xFF58595B)
+                  ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15.0),
                     borderSide: BorderSide(color: Color(0xFF9EDEFF)),
@@ -372,20 +437,19 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
           Padding(
             padding: EdgeInsets.only(left: 20.0, right: 20.0),
             child: Container(
-              child: InputDecorator(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                      borderSide: BorderSide(color: Color(0xFF9EDEFF))),
-                  contentPadding: EdgeInsets.all(10),
-                ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  border: Border.all(color: Color(0xFF9EDEFF))
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(left: 10.0,right: 10.0),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     value: dropdownValue,
-                    icon: const Icon(Icons.arrow_downward),
+                    style: TextStyle(color: Color(0xFF58595B),fontWeight: FontWeight.bold),
+                    icon: const Icon(Icons.keyboard_arrow_down_sharp),
                     iconSize: 24,
                     elevation: 16,
-                    style: const TextStyle(color: Color(0xFF144385)),
                     onChanged: (String newValue) {
                       setState(() {
                         dropdownValue = newValue;
