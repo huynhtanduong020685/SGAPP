@@ -5,6 +5,7 @@ import 'package:infixedu/screens/new_student/ChatScreen/ChatScreen.dart';
 import 'package:infixedu/screens/new_student/ELearningScreen/ElearningScreen.dart';
 import 'package:infixedu/screens/new_student/HomeScreen/HomeScreen.dart';
 import 'package:infixedu/screens/new_student/SettingScreen/SettingsScreen.dart';
+import 'package:infixedu/screens/new_student/commonWidgets/AppBarWidget.dart';
 import 'package:infixedu/screens/new_student/studentScreen/StudentScreen.dart';
 import 'package:infixedu/screens/new_student/absent.dart';
 import 'package:infixedu/utils/Utils.dart';
@@ -25,7 +26,7 @@ class _StudentHomeState extends State<StudentHome> {
   String name;
   String rule;
   int _selectedIndex = 0;
-  var _pageController= PageController();
+
   @override
   void initState() {
     super.initState();
@@ -36,27 +37,14 @@ class _StudentHomeState extends State<StudentHome> {
     });
   }
 
-  var _pages=[
-    HomeScreen(),StudentScreen(),ChatScreen(),BusScreen(),ELearningScreen(),SettingScreen()
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: appBar(),
-        body: PageView(
-          children: _pages,
-          onPageChanged: (index){
-            setState(() {
-              _selectedIndex=index;
-            });
-          },
-          controller: _pageController,
-        ),
-        // body: Center(child: _pages[_selectedIndex],),
+        appBar: AppBarWidget(),
+        body: body(_selectedIndex),
         floatingActionButton:
-        Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+            Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
           FloatingActionButton(
             backgroundColor: const Color(0xFF7dd3f7),
             heroTag: Text("btn1"),
@@ -88,7 +76,11 @@ class _StudentHomeState extends State<StudentHome> {
         bottomNavigationBar: bottomNavBar());
   }
 
-
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   Widget bottomNavBar() {
     return Container(
@@ -108,7 +100,7 @@ class _StudentHomeState extends State<StudentHome> {
             showUnselectedLabels: false,
             type: BottomNavigationBarType.fixed,
             backgroundColor: const Color(0xFF7dd3f7),
-            selectedItemColor: Color(0xff191970),
+            selectedItemColor: Color(0xff07509d),
             unselectedItemColor: Colors.white,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
@@ -160,54 +152,6 @@ class _StudentHomeState extends State<StudentHome> {
         ),
       ),
     );
-
-  }
-  void _onItemTapped(index) {
-    setState(() {
-      _selectedIndex = index;
-      _pageController.animateToPage(_selectedIndex,
-          duration: Duration(microseconds: 200), curve: Curves.linear);
-    });
-  }
-  Widget appBar() {
-    return PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
-        child: AppBar(
-          toolbarHeight: 100,
-          primary: false,
-          centerTitle: false,
-          title: Row(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 35.0,
-                      backgroundImage:
-                      AssetImage('assets/images/icons/student1.png'),
-                      backgroundColor: Colors.white,
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Text(
-                          getName() != null ? getName() : 'null',
-                          style: TextStyle(
-                              color: const Color(0xff191970), fontSize: 23.0),
-                        ))
-                  ],
-                ),
-              ),
-            ],
-          ),
-          flexibleSpace: Image(
-            image: AssetImage('assets/images/tool_bar_bg.png'),
-            fit: BoxFit.cover,
-            height: 100.0,
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-        ));
   }
 
   Future<void> clear() async {
