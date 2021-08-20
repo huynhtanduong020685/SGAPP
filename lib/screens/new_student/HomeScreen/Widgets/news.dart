@@ -13,7 +13,7 @@ class _NewsState extends State<News> {
     return ListView(
       children: [
         Container(
-          height: 280,
+          height: 310,
           padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Card(
             shape:
@@ -35,7 +35,7 @@ class _NewsState extends State<News> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                     child: Text(
                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                       style: TextStyle(color: Colors.grey),
@@ -44,20 +44,50 @@ class _NewsState extends State<News> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 10, bottom: 10),
+                        padding: const EdgeInsets.only(left: 10, top: 5),
                         child: Text("25/12/2021     14:30",
                             style: TextStyle(color: Colors.grey),
                             textAlign: TextAlign.end),
                       ),
                     ],
-                  )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(    
+                          icon: Image.asset('assets/images/icons/4. LIKE.png',height: 25,width: 30,),
+                          color: Colors.grey,
+                          tooltip: 'Like',
+                          onPressed: () {}),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Text('0 like'),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.comment),
+                          color: Colors.grey,
+                          tooltip: 'Comments',
+                          onPressed: () {}),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Text('0 comment'),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.share),
+                          color: Colors.grey,
+                          tooltip: 'Comments',
+                          onPressed: () {}),
+                      Text('0 share'),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
         ),
+        
         Container(
-          height: 280,
+          height: 310,
           padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Card(
             shape:
@@ -79,7 +109,7 @@ class _NewsState extends State<News> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                     child: Text(
                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                       style: TextStyle(color: Colors.grey),
@@ -88,20 +118,50 @@ class _NewsState extends State<News> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 10, bottom: 10),
+                        padding: const EdgeInsets.only(left: 10, top: 5),
                         child: Text("25/12/2021     14:30",
                             style: TextStyle(color: Colors.grey),
                             textAlign: TextAlign.end),
                       ),
                     ],
-                  )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          icon: Image.asset('assets/images/icons/4. LIKE.png',height: 25,width: 30,),
+                          color: Colors.grey,
+                          tooltip: 'Like',
+                          onPressed: () {}),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Text('0 like'),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.comment),
+                          color: Colors.grey,
+                          tooltip: 'Comments',
+                          onPressed: () {}),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Text('0 comment'),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.share),
+                          color: Colors.grey,
+                          tooltip: 'Comments',
+                          onPressed: () {}),
+                      Text('0 share'),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
         ),
+
         Container(
-          height: 280,
+          height: 310,
           padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Card(
             shape:
@@ -123,7 +183,7 @@ class _NewsState extends State<News> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                     child: Text(
                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                       style: TextStyle(color: Colors.grey),
@@ -132,13 +192,42 @@ class _NewsState extends State<News> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 10, bottom: 10),
+                        padding: const EdgeInsets.only(left: 10, top: 5),
                         child: Text("25/12/2021     14:30",
                             style: TextStyle(color: Colors.grey),
                             textAlign: TextAlign.end),
                       ),
                     ],
-                  )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          icon: Image.asset('assets/images/icons/4. LIKE.png',height: 25,width: 30,),
+                          color: Colors.grey,
+                          tooltip: 'Like',
+                          onPressed: () {}),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Text('0 like'),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.comment),
+                          color: Colors.grey,
+                          tooltip: 'Comments',
+                          onPressed: () {}),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Text('0 comment'),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.share),
+                          color: Colors.grey,
+                          tooltip: 'Comments',
+                          onPressed: () {}),
+                      Text('0 share'),
+                    ],
+                  ),
                 ],
               ),
             ),

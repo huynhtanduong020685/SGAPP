@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
 
 class GradeBookScreen extends StatefulWidget {
@@ -34,45 +35,7 @@ class _GradeBookScreenState extends State<GradeBookScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
-          child: AppBar(
-            automaticallyImplyLeading: false,
-            toolbarHeight: 100,
-            primary: false,
-            centerTitle: false,
-            title: Row(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: 35.0,
-                        backgroundImage:
-                            AssetImage('assets/images/icons/student1.png'),
-                        backgroundColor: Colors.white,
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Text(
-                            name != null ? name : 'null',
-                            style: TextStyle(
-                                color: const Color(0xff07509d), fontSize: 23.0),
-                          ))
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            flexibleSpace: Image(
-              image: AssetImage('assets/images/tool_bar_bg.png'),
-              fit: BoxFit.cover,
-              height: 100.0,
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-          )),
+      appBar: AppBarWidget(),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: Column(
@@ -101,36 +64,49 @@ class _GradeBookScreenState extends State<GradeBookScreen>
               child: DefaultTabController(
                   length: 3,
                   child: TabBar(
+                    labelPadding: EdgeInsets.all(0),
                     controller: _tabController,
                     indicatorColor: Color(0xff7cd3f7),
                     tabs: [
-                      Tab(
-                        child: Text(
-                          "WEEKLY SCORES",
-                          style: TextStyle(
-                              fontSize: 9,
-                              color: Color(0xff13438f),
-                              fontWeight: FontWeight.w800),
+                       Container(
+                        width: 120,
+                        child: Tab(
+                          child: Text(
+                            "WEEKLY SCORES",
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xff13438f),
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
                       ),
-                      Tab(
-                        child: Text(
-                          "SUBJECT SCORES",
-                          style: TextStyle(
-                              fontSize: 9,
-                              color: Color(0xff13438f),
-                              fontWeight: FontWeight.w800),
+
+                       Container(
+                        width: 120,
+                        child: Tab(
+                          child: Text(
+                            "SUBJECT SCORES",
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xff13438f),
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
                       ),
-                      Tab(
-                        child: Text(
-                          "PROGRESS SCORES",
-                          style: TextStyle(
-                              fontSize: 9,
-                              color: Color(0xff13438f),
-                              fontWeight: FontWeight.w800),
+                     
+                      Container(
+                        width: 120,
+                        child: Tab(
+                          child: Text(
+                            "PROGRESS REPORTS",
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xff13438f),
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
-                      )
+                      ),
+                     
                     ],
                   )),
             ),
@@ -140,246 +116,319 @@ class _GradeBookScreenState extends State<GradeBookScreen>
               children: [
                 ListView(
                   children: [
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      margin: EdgeInsets.all(15),
-                      color: Color(0xFFEBF6FF),
-                      shadowColor: Colors.blueGrey,
-                      elevation: 10,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Subject",
-                                  style: TextStyle(
-                                      color: Color(0xff13438f),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
+                    
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(
+                        color: Color(0xffebf6ff),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: ListTile(
+                            contentPadding: EdgeInsets.only(left: 0.0),
+                            isThreeLine: true,
+                            leading: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xFF7dd3f7),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(30.0),
+                                  bottomRight: Radius.circular(30.0),
                                 ),
-                                Text('25/12/2021')
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                            child: Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 30),
+                              ),
+                              width: 35,
+                              height: 30,
+                              child: Center(
                                   child: Text(
-                                    'Score:',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                ),
-                                Text(
-                                  '200-400',
-                                  style: TextStyle(
-                                      color: Color(0xff7cd3f7),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w800),
-                                ),
-                              ],
+                                '1',
+                                style: TextStyle(fontSize: 18, color: Colors.white),
+                              )),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ],
+                            title: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Subject",
+                                    style: TextStyle(
+                                        color: Color(0xff13438f),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Text('25/12/2021',style: TextStyle(color: Colors.grey,fontSize: 14),),
+                                  )
+                                ],
+                              ),
+                            subtitle: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10,bottom: 10),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. ')),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 30),
+                                          child: Text(
+                                            'Score:',
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ),
+                                        Text(
+                                          '200-400',
+                                          style: TextStyle(
+                                              color: Color(0xff7cd3f7),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w800),
+                                        ),
+                                      ],
+                                    ),),
+                                )
+                              ],
+                            )),
                       ),
                     ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      margin: EdgeInsets.all(15),
-                      color: Color(0xFFEBF6FF),
-                      shadowColor: Colors.blueGrey,
-                      elevation: 10,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Subject",
-                                  style: TextStyle(
-                                      color: Color(0xff13438f),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(
+                        color: Color(0xffebf6ff),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: ListTile(
+                            contentPadding: EdgeInsets.only(left: 0.0),
+                            isThreeLine: true,
+                            leading: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xFF7dd3f7),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(30.0),
+                                  bottomRight: Radius.circular(30.0),
                                 ),
-                                Text('25/12/2021')
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                            child: Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 30),
+                              ),
+                              width: 35,
+                              height: 30,
+                              child: Center(
                                   child: Text(
-                                    'Score:',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                ),
-                                Text(
-                                  '200-400',
-                                  style: TextStyle(
-                                      color: Color(0xff7cd3f7),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w800),
-                                ),
-                              ],
+                                '1',
+                                style: TextStyle(fontSize: 18, color: Colors.white),
+                              )),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ],
+                            title: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Subject",
+                                    style: TextStyle(
+                                        color: Color(0xff13438f),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Text('25/12/2021',style: TextStyle(color: Colors.grey,fontSize: 14),),
+                                  )
+                                ],
+                              ),
+                            subtitle: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10,bottom: 10),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. ')),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 30),
+                                          child: Text(
+                                            'Score:',
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ),
+                                        Text(
+                                          '200-400',
+                                          style: TextStyle(
+                                              color: Color(0xff7cd3f7),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w800),
+                                        ),
+                                      ],
+                                    ),),
+                                )
+                              ],
+                            )),
                       ),
                     ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      margin: EdgeInsets.all(15),
-                      color: Color(0xFFEBF6FF),
-                      shadowColor: Colors.blueGrey,
-                      elevation: 10,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Subject",
-                                  style: TextStyle(
-                                      color: Color(0xff13438f),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(
+                        color: Color(0xffebf6ff),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: ListTile(
+                            contentPadding: EdgeInsets.only(left: 0.0),
+                            isThreeLine: true,
+                            leading: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xFF7dd3f7),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(30.0),
+                                  bottomRight: Radius.circular(30.0),
                                 ),
-                                Text('25/12/2021')
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                            child: Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 30),
+                              ),
+                              width: 35,
+                              height: 30,
+                              child: Center(
                                   child: Text(
-                                    'Score:',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                ),
-                                Text(
-                                  '200-400',
-                                  style: TextStyle(
-                                      color: Color(0xff7cd3f7),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w800),
-                                ),
-                              ],
+                                '1',
+                                style: TextStyle(fontSize: 18, color: Colors.white),
+                              )),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ],
+                            title: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Subject",
+                                    style: TextStyle(
+                                        color: Color(0xff13438f),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Text('25/12/2021',style: TextStyle(color: Colors.grey,fontSize: 14),),
+                                  )
+                                ],
+                              ),
+                            subtitle: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10,bottom: 10),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. ')),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 30),
+                                          child: Text(
+                                            'Score:',
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ),
+                                        Text(
+                                          '200-400',
+                                          style: TextStyle(
+                                              color: Color(0xff7cd3f7),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w800),
+                                        ),
+                                      ],
+                                    ),),
+                                )
+                              ],
+                            )),
                       ),
                     ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      margin: EdgeInsets.all(15),
-                      color: Color(0xFFEBF6FF),
-                      shadowColor: Colors.blueGrey,
-                      elevation: 10,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Subject",
-                                  style: TextStyle(
-                                      color: Color(0xff13438f),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Card(
+                        color: Color(0xffebf6ff),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: ListTile(
+                            contentPadding: EdgeInsets.only(left: 0.0),
+                            isThreeLine: true,
+                            leading: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xFF7dd3f7),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(30.0),
+                                  bottomRight: Radius.circular(30.0),
                                 ),
-                                Text('25/12/2021')
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                            child: Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 30),
+                              ),
+                              width: 35,
+                              height: 30,
+                              child: Center(
                                   child: Text(
-                                    'Score:',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                ),
-                                Text(
-                                  '200-400',
-                                  style: TextStyle(
-                                      color: Color(0xff7cd3f7),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w800),
-                                ),
-                              ],
+                                '1',
+                                style: TextStyle(fontSize: 18, color: Colors.white),
+                              )),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ],
+                            title: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Subject",
+                                    style: TextStyle(
+                                        color: Color(0xff13438f),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Text('25/12/2021',style: TextStyle(color: Colors.grey,fontSize: 14),),
+                                  )
+                                ],
+                              ),
+                            subtitle: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10,bottom: 10),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. ')),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 30),
+                                          child: Text(
+                                            'Score:',
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ),
+                                        Text(
+                                          '200-400',
+                                          style: TextStyle(
+                                              color: Color(0xff7cd3f7),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w800),
+                                        ),
+                                      ],
+                                    ),),
+                                )
+                              ],
+                            )),
                       ),
                     ),
+                  
                   ],
                 ),
                 ListView(
@@ -390,7 +439,7 @@ class _GradeBookScreenState extends State<GradeBookScreen>
                     Padding(
                       padding: const EdgeInsets.only(top: 30),
                       child: Container(
-                        height: 350,
+                        height: 300,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Color(0xffebf6ff),
@@ -399,10 +448,11 @@ class _GradeBookScreenState extends State<GradeBookScreen>
                           ],
                         ),
                         child: GridView.count(
+                          childAspectRatio: 3/2,
                           primary: false,
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
                           crossAxisSpacing: 30,
-                          mainAxisSpacing: 30,
+                          mainAxisSpacing: 40,
                           crossAxisCount: 2,
                           children: <Widget>[
                             Container(

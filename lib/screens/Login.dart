@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/config/app_config.dart';
+import 'package:infixedu/screens/login/login_new.dart';
 import 'package:infixedu/screens/regsiter.dart';
 
 // Project imports:
@@ -42,8 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
-  firebaseNotificationSetup() async{
-
+  firebaseNotificationSetup() async {
     NotificationSettings settings = await messaging.requestPermission(
       alert: true,
       announcement: false,
@@ -71,22 +71,43 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Container(
           child: Column(
             children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(""),
+                  Text(""),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        // Respond to button press
+                      },
+                      child: const Text('ENGLISH'),
+                      style: TextButton.styleFrom(
+                        primary: const Color(0xff13438f),
+                        side: const BorderSide(
+                            color: Color(0xff13438f), width: 1),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 15),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               Expanded(
                 flex: 3,
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.3,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                    image: AssetImage(AppConfig.loginBackground),
-                    fit: BoxFit.fill,
-                  )),
                   child: Center(
                     child: Container(
-                      height: 150.0,
+                      height: 250.0,
                       width: 150.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                        image: AssetImage(AppConfig.appLogo),
+                        image: AssetImage(AppConfig.loginLogo),
                       )),
                     ),
                   ),
@@ -98,102 +119,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: ListView(
                     children: <Widget>[
-                      // Row(
-                      //   children: <Widget>[
-                      //     Expanded(
-                      //       child: ElevatedButton(
-                      //         onPressed: () {
-                      //           user = 'student';
-                      //           futureEmail = getEmail(user);
-                      //           futureEmail.then((value) {
-                      //             setState(() {
-                      //               email = value;
-                      //               emailController.text = email;
-                      //               passwordController.text = password;
-                      //             });
-                      //           });
-                      //         },
-                      //         style: ElevatedButton.styleFrom(
-                      //             primary: Colors.purpleAccent,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.only(
-                      //                 topLeft: Radius.circular(8.0),
-                      //                 bottomLeft: Radius.circular(8.0),
-                      //               ),
-                      //             )),
-                      //         child: Text(
-                      //           "Student",
-                      //           style: Theme.of(context)
-                      //               .textTheme
-                      //               .headline4
-                      //               .copyWith(color: Colors.white),
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     Expanded(
-                      //       child: ElevatedButton(
-                      //         onPressed: () {
-                      //           setState(() {
-                      //             user = 'teacher';
-                      //             futureEmail = getEmail(user);
-                      //             futureEmail.then((value) {
-                      //               setState(() {
-                      //                 email = value;
-                      //                 emailController.text = email;
-                      //                 passwordController.text = password;
-                      //               });
-                      //             });
-                      //           });
-                      //         },
-                      //         style: ElevatedButton.styleFrom(
-                      //             primary: Colors.purpleAccent,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.all(
-                      //                 Radius.circular(0.0),
-                      //               ),
-                      //             )),
-                      //         child: Text("Teacher",
-                      //             style: Theme.of(context)
-                      //                 .textTheme
-                      //                 .headline4
-                      //                 .copyWith(color: Colors.white)),
-                      //       ),
-                      //     ),
-                      //     Expanded(
-                      //       child: ElevatedButton(
-                      //         onPressed: () {
-                      //           user = 'parent';
-                      //           futureEmail = getEmail(user);
-                      //           futureEmail.then((value) {
-                      //             setState(() {
-                      //               email = value;
-                      //               emailController.text = email;
-                      //               passwordController.text = password;
-                      //             });
-                      //           });
-                      //         },
-                      //         style: ElevatedButton.styleFrom(
-                      //             primary: Colors.purpleAccent,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.only(
-                      //                 topRight: Radius.circular(8.0),
-                      //                 bottomRight: Radius.circular(8.0),
-                      //               ),
-                      //             )),
-                      //         child: Text("Parents",
-                      //             style: Theme.of(context)
-                      //                 .textTheme
-                      //                 .headline4
-                      //                 .copyWith(color: Colors.white)),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
                       SizedBox(
                         height: 30,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0),
+                        padding: const EdgeInsets.only(bottom: 5.0),
                         child: TextFormField(
                           keyboardType: TextInputType.text,
                           style: textStyle,
@@ -206,6 +136,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           },
                           decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF9EDEFF)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xFF9EDEFF)),
+                              ),
                               hintText: "email",
                               labelText: "Email",
                               labelStyle: textStyle,
@@ -216,8 +155,23 @@ class _LoginScreenState extends State<LoginScreen> {
                               )),
                         ),
                       ),
+                      GestureDetector(
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => RegisterWidget()),
+                            // );
+                          },
+                          child: Padding(
+                              padding: EdgeInsets.only(bottom: 15.0),
+                              child: Text(
+                                'Forgot Email/Phone Number? ',
+                                style: TextStyle(color: Colors.grey),
+                                textAlign: TextAlign.end,
+                              ))),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 1.0),
+                        padding: const EdgeInsets.only(bottom: 5.0),
                         child: TextFormField(
                           obscureText: true,
                           keyboardType: TextInputType.visiblePassword,
@@ -231,6 +185,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           },
                           decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF9EDEFF)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color(0xFF9EDEFF)),
+                              ),
                               hintText: "password",
                               labelText: "Password",
                               labelStyle: textStyle,
@@ -243,12 +206,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => RegisterWidget()),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => RegisterWidget()),
+                            // );
                           },
-                          child: Text('New User ',style: TextStyle(color: Colors.grey),textAlign: TextAlign.end,)),
+                          child: Padding(
+                              padding: EdgeInsets.only(bottom: 5.0),
+                              child: Text(
+                                'Forgot Password? ',
+                                style: TextStyle(color: Colors.grey),
+                                textAlign: TextAlign.end,
+                              ))),
                     ],
                   ),
                 ),
@@ -264,21 +234,13 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              child: Container(
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width,
-                height: 50.0,
-                decoration: Utils.gradientBtnDecoration,
-                child: Text(
-                  "Login",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5
-                      .copyWith(color: Colors.white),
-                ),
+            FlatButton(
+              child: Text(
+                "REGISTER",
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
-              onTap: () {
+              onPressed: () {
                 if (_formKey.currentState.validate()) {
                   String email = emailController.text;
                   String password = passwordController.text;
@@ -301,7 +263,52 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 }
               },
+              color: Color(0xFF9EDEFF),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Color(0xFF9EDEFF))),
             ),
+            // GestureDetector(
+            //   child: Container(
+            //     alignment: Alignment.center,
+            //     width: MediaQuery.of(context).size.width,
+            //     height: 50.0,
+            //     decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(25.0),
+            //       color: Color(0xFF7dd3f7),
+            //     ),
+            //     child: Text(
+            //       "REGISTER",
+            //       style: Theme.of(context)
+            //           .textTheme
+            //           .headline5
+            //           .copyWith(color: Colors.white),
+            //     ),
+            //   ),
+            //   onTap: () {
+            //     if (_formKey.currentState.validate()) {
+            //       String email = emailController.text;
+            //       String password = passwordController.text;
+            //
+            //       if (email.length > 0 && password.length > 0) {
+            //         setState(() {
+            //           isResponse = true;
+            //         });
+            //         Login(email, password).getData2(context).then((result) {
+            //           setState(() {
+            //             isResponse = false;
+            //           });
+            //           Utils.showToast(result);
+            //         });
+            //       } else {
+            //         setState(() {
+            //           isResponse = false;
+            //         });
+            //         Utils.showToast('invalid email and password');
+            //       }
+            //     }
+            //   },
+            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: isResponse == true

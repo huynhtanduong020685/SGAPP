@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infixedu/screens/new_student/commonWidgets/AppBarWidget.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
-
 
 class AbsentScreen extends StatefulWidget {
   const AbsentScreen({key}) : super(key: key);
@@ -12,7 +11,7 @@ class AbsentScreen extends StatefulWidget {
 class _AbsentScreenState extends State<AbsentScreen> {
   bool _checkbox = false;
   String name;
- 
+
   void initState() {
     super.initState();
     name = getName();
@@ -45,11 +44,6 @@ class _AbsentScreenState extends State<AbsentScreen> {
                 padding: new EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
               ),
             ),
-
-            Container(
-              
-              
-              ),
             Row(
               children: [
                 Padding(
@@ -68,57 +62,108 @@ class _AbsentScreenState extends State<AbsentScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20),
-              child: Row(
-                children: [
-                  Container(
-                      width: MediaQuery.of(context).size.width / 3,
-                      child: Text('16/08/2021')),
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
-                    },
+              child: Container(
+                decoration: BoxDecoration(
+               border: Border(
+                  
+                  bottom: BorderSide( //                    <--- top side
+                    color: Color(0xff7cd3f7),
+                    width: 1.0,
                   ),
-                  Text('Absent'),
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
-                    },
-                  ),
-                  Text('Present'),
-                ],
+                ),
+                
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                        width: MediaQuery.of(context).size.width / 3,
+                        child: Text('16/08/2021')),
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        unselectedWidgetColor: Color(0xff7cd3f7),
+                      ),
+                      child: Checkbox(
+                        value: _checkbox,
+                        
+                        onChanged: (value) {
+                          setState(() {
+                            _checkbox = !_checkbox;
+                          });
+                        },
+                      ),
+                    ),
+                    Text('Absent'),
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        unselectedWidgetColor: Color(0xff7cd3f7),
+                      ),
+                      child: Checkbox(
+                        value: _checkbox,
+                        onChanged: (value) {
+                          setState(() {
+                            _checkbox = !_checkbox;
+                          });
+                        },
+                      ),
+                    ),
+                    Text('Present'),
+                  ],
+                ),
               ),
             ),
-            Row(
-              children: [
-                Container(
-                    width: MediaQuery.of(context).size.width / 3,
-                    child: Text('17/08/2021')),
-                Checkbox(
-                  value: _checkbox,
-                  onChanged: (value) {
-                    setState(() {
-                      _checkbox = !_checkbox;
-                    });
-                  },
+
+             Padding(
+              padding: const EdgeInsets.only(top: 10,bottom: 10),
+              child: Container(
+                decoration: BoxDecoration(
+               border: Border(
+                  
+                  bottom: BorderSide( //                    <--- top side
+                    color: Color(0xff7cd3f7),
+                    width: 1.0,
+                  ),
                 ),
-                Text('Absent'),
-                Checkbox(
-                  value: _checkbox,
-                  onChanged: (value) {
-                    setState(() {
-                      _checkbox = !_checkbox;
-                    });
-                  },
+                
                 ),
-                Text('Present'),
-              ],
+                child: Row(
+                  children: [
+                    Container(
+                        width: MediaQuery.of(context).size.width / 3,
+                        child: Text('17/08/2021')),
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        unselectedWidgetColor: Color(0xff7cd3f7),
+                      ),
+                      child: Checkbox(
+                        value: _checkbox,
+                        
+                        onChanged: (value) {
+                          setState(() {
+                            _checkbox = !_checkbox;
+                          });
+                        },
+                      ),
+                    ),
+                    Text('Absent'),
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        unselectedWidgetColor: Color(0xff7cd3f7),
+                      ),
+                      child: Checkbox(
+                        value: _checkbox,
+                        onChanged: (value) {
+                          setState(() {
+                            _checkbox = !_checkbox;
+                          });
+                        },
+                      ),
+                    ),
+                    Text('Present'),
+                  ],
+                ),
+              ),
             ),
+            
             Card(
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -130,7 +175,7 @@ class _AbsentScreenState extends State<AbsentScreen> {
                     style: TextStyle(color: Colors.black45),
                     maxLines: 8,
                     decoration: InputDecoration.collapsed(
-                        hintText: "Reason Absent",
+                        hintText: "Reason Absent ...",
                         hintStyle: TextStyle(
                             fontSize: 14.0, color: Color(0xffd8d8d8))),
                   ),

@@ -58,65 +58,104 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                FlatButton(
-                  child: Text(
-                    "STUDENT INFO",
-                    style: TextStyle(
-                        color: Color(0xFF144385), fontWeight: FontWeight.bold),
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 8,
+                        offset: Offset(0, 3),
+                      )
+                    ],
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(25.0),
+                    ),
                   ),
-                  onPressed: () {},
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                      side: BorderSide(color: Color(0xFF9EDEFF))),
+                  child: FlatButton(
+                    child: Text(
+                      "STUDENT INFO",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {},
+                    color: Color(0xFF9EDEFF),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        side: BorderSide(color: Color(0xFF9EDEFF))),
+                  ),
                 ),
-                FlatButton(
-                  child: Text(
-                    "FAMILY INFO",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 8,
+                        offset: Offset(0, 3),
+                      )
+                    ],
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(25.0),
+                    ),
                   ),
-                  onPressed: () {},
-                  color: Color(0xFF9EDEFF),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                      side: BorderSide(color: Color(0xFF9EDEFF))),
+                  child: FlatButton(
+                    child: Text(
+                      "FAMILY INFO",
+                      style: TextStyle(
+                          color: Color(0xFF144385), fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {},
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        side: BorderSide(color: Color(0xFF9EDEFF))),
+                  ),
                 ),
               ],
             ),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: InputDecorator(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                      borderSide: BorderSide(color: Color(0xFF9EDEFF))),
-                  contentPadding: EdgeInsets.all(10),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(color: Color(0xFF9EDEFF))
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: const Icon(Icons.arrow_downward),
-                    iconSize: 24,
-                    elevation: 16,
-                    style: const TextStyle(color: Color(0xFF144385)),
-                    onChanged: (String newValue) {
-                      setState(() {
-                        dropdownValue = newValue;
-                      });
-                    },
-                    items: <String>['One', 'Two', 'Free', 'Four']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 10.0,right: 10.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      icon: const Icon(Icons.keyboard_arrow_down_sharp),
+                      style: TextStyle(color: Color(0xFF58595B),fontWeight: FontWeight.bold),
+                      iconSize: 24,
+                      elevation: 16,
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownValue = newValue;
+                        });
+                      },
+                      items: <String>[
+                        'Enrol in',
+                        'One',
+                        'Two',
+                        'Free',
+                        'Four',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),
             ),
             ListTile(
-              title: const Text('Father'),
+              title: const Text('Father',style: TextStyle(color: Color(0xFF58595B))),
               leading: Radio<SingingCharacter>(
                 value: SingingCharacter.Father,
                 groupValue: _character,
@@ -128,7 +167,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
               ),
             ),
             ListTile(
-              title: const Text('Guardian'),
+              title: const Text('Guardian',style: TextStyle(color: Color(0xFF58595B))),
               leading: Radio<SingingCharacter>(
                 value: SingingCharacter.Guardian,
                 groupValue: _character,
@@ -140,7 +179,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
               ),
             ),
             ListTile(
-              title: const Text('Primary Contact'),
+              title: const Text('Primary Contact',style: TextStyle(color: Color(0xFF58595B))),
               leading: Radio<SingingCharacter>(
                 value: SingingCharacter.PrimaryContact,
                 groupValue: _character,
@@ -167,7 +206,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelStyle: TextStyle(
-                        color: Color(0xFF144385)
+                        color: Color(0xFF58595B),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -190,7 +229,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelStyle: TextStyle(
-                        color: Color(0xFF144385)
+                        color: Color(0xFF58595B)
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -213,7 +252,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelStyle: TextStyle(
-                        color: Color(0xFF144385)
+                        color: Color(0xFF58595B)
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -236,7 +275,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelStyle: TextStyle(
-                        color: Color(0xFF144385)
+                        color: Color(0xFF58595B)
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -259,7 +298,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelStyle: TextStyle(
-                        color: Color(0xFF144385)
+                        color: Color(0xFF58595B)
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -282,7 +321,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelStyle: TextStyle(
-                        color: Color(0xFF144385)
+                        color: Color(0xFF58595B)
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -305,7 +344,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelStyle: TextStyle(
-                        color: Color(0xFF144385)
+                        color: Color(0xFF58595B)
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -328,7 +367,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                 obscureText: true,
                 decoration: InputDecoration(
                     labelStyle: TextStyle(
-                        color: Color(0xFF144385)
+                        color: Color(0xFF58595B)
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -369,7 +408,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: const Text('Beginner'),
+                              title: const Text('Beginner',style: TextStyle(fontSize: 12,color: Color(0xFF58595B)),),
                               leading: Radio<EnglishLevel>(
                                 value: EnglishLevel.Beginner,
                                 groupValue: _level,
@@ -383,7 +422,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                           ),
                           Expanded(
                             child: ListTile(
-                              title: const Text('Gaining Confidence'),
+                              title: const Text('Gaining Confidence',style: TextStyle(fontSize: 12,color: Color(0xFF58595B)),),
                               leading: Radio<EnglishLevel>(
                                 value: EnglishLevel.GainingConfidence,
                                 groupValue: _level,
@@ -401,7 +440,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: const Text('Confidence'),
+                              title: const Text('Confidence',style: TextStyle(fontSize: 12,color: Color(0xFF58595B)),),
                               leading: Radio<EnglishLevel>(
                                 value: EnglishLevel.Confidence,
                                 groupValue: _level,
@@ -415,7 +454,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                           ),
                           Expanded(
                             child: ListTile(
-                              title: const Text('Fluent'),
+                              title: const Text('Fluent',style: TextStyle(fontSize: 12,color: Color(0xFF58595B)),),
                               leading: Radio<EnglishLevel>(
                                 value: EnglishLevel.FLuent,
                                 groupValue: _level,
@@ -433,7 +472,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: const Text('Native'),
+                              title: const Text('Native',style: TextStyle(fontSize: 12,color: Color(0xFF58595B)),),
                               leading: Radio<EnglishLevel>(
                                 value: EnglishLevel.Native,
                                 groupValue: _level,
