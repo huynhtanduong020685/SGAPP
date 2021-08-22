@@ -51,7 +51,7 @@ class _DateOfWeekWidgetState extends State<DateOfWeekWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10),
+      padding: EdgeInsets.fromLTRB(25, 15, 25, 15),
       child: Container(
         decoration: BoxDecoration(
             boxShadow: [
@@ -62,7 +62,7 @@ class _DateOfWeekWidgetState extends State<DateOfWeekWidget> {
                 offset: Offset(0, 3), // changes position of shadow
               ),
             ],
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(30),
             border: Border.all(
               width: 2,
               color: Colors.white,
@@ -71,7 +71,8 @@ class _DateOfWeekWidgetState extends State<DateOfWeekWidget> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 50,
+              width:  MediaQuery. of(context). size. width,
+              height: 60,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
