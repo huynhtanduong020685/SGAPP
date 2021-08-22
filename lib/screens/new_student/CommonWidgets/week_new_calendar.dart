@@ -71,7 +71,7 @@ class _Week2CalendarWidgetState extends State<Week2CalendarWidget> {
         child: Column(
           children: <Widget>[
             Container(
-              
+              width:  MediaQuery. of(context). size. width,
               height: 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +95,7 @@ class _Week2CalendarWidgetState extends State<Week2CalendarWidget> {
                     ),
                     onPressed: () {},
                     child: Text(
-                      'week ${(DateTime.now().day/7).floor()+1} (${DateFormat("dd/MM").format(monday_obj)} - ${DateFormat("dd/MM").format(friday_obj)}) '
+                      'week ${((DateTime.now().day)/7 -0.01 ).floor()+1} (${DateFormat("dd/MM").format(monday_obj)} - ${DateFormat("dd/MM").format(friday_obj)}) '
                           .toUpperCase(),
                       style: TextStyle(
                           color: Color(0xff07509d),

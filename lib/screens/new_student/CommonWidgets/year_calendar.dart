@@ -71,6 +71,7 @@ class _YearCalendarWidgetState extends State<YearCalendarWidget> {
         child: Column(
           children: <Widget>[
             Container(
+              width:  MediaQuery. of(context). size. width,
               height: 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
